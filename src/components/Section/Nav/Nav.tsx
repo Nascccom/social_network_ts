@@ -36,7 +36,7 @@ export const Nav = () => {
           </div>
           <div className={style.link}>
               <FontAwesomeIcon icon={faRightFromBracket} size="lg" pull="left"/>
-
+              <NavLink to="logout">Logout</NavLink>
           </div>
       </div>
     );

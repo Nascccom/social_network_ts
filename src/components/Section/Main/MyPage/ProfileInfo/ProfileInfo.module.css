@@ -1,0 +1,13 @@
+.profileInfo {
+    display: flex;
+    background-color: #eee1e1;
+    margin-bottom: 20px;
+    padding: 20px
+}
+
+.userAvatar img {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin: 0 20px 0 0;
+}
