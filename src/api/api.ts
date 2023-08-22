@@ -27,13 +27,11 @@ export const friendsAPI = {
 }
 
 export const profileAPI = {
-    getProfile: (userId: string) => {
+    getProfile (userId: string) {
         return instance.get<UserProfileType>(`profile/${userId}`)
-          .then(res => res.data)
     },
     getStatus: (userId: string) => {
         return instance.get<string>(`profile/status/${userId}`)
-          .then(res => res.data)
     },
     updateStatus: (status: string) => {
         return instance.put<ResponseType<string>>(`/profile/status`, {status})
@@ -63,7 +61,7 @@ export type AuthMeData = {
     email: string
 }
 
-export type UserProfileType = null | {
+export type UserProfileType = {
     aboutMe: string
     contacts: ContactsType
     fullName: string

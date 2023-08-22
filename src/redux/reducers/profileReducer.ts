@@ -1,10 +1,10 @@
 import {v1} from "uuid";
-import {UserProfileType} from "../../api/api.ts";
-import {PROFILE} from "../types.ts";
+import {profileAPI, UserProfileType} from "../../api/api.ts";
+import {PROFILE, ThunkActionType, ThunkDispatchType} from "../types.ts";
 
 
 const initialState = {
-    profile: null as UserProfileType,
+    profile: null as UserProfileType | null,
     posts: [
         {
             id: v1(),
@@ -87,9 +87,29 @@ export const setProfileAC = (profile: UserProfileType) => ({type: PROFILE.SET_PR
 
 export const setStatusAC = (status: string) => ({type: PROFILE.SET_STATUS, status}) as const
 
+//Thunk Creator
+export const getUserProfileTC = (userId: string): ThunkActionType => {
+    return async (dispatch: ThunkDispatchType) => {
+        const response = await profileAPI.getProfile(userId)
+        dispatch(setProfileAC(response.data))
+    }
+}
+
+export const getStatusTC = (userId: string): ThunkActionType => {
+    return async (dispatch: ThunkDispatchType) => {
+        const response = await profileAPI.getStatus(userId)
+          dispatch(setStatusAC(response.data))
+    }
+}
+
+export const updateStatusTC = (status: string): ThunkActionType => {
+    return async (dispatch: ThunkDispatchType) => {
+        const response = await profileAPI.updateStatus(status)
+        dispatch(setStatusAC(response.data))
+    }
+}
 
 //TYPES
-
 export type PostType = {
     id: string
     name: string
