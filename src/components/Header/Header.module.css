@@ -1,0 +1,29 @@
+.header {
+    background: #fff url('../../img/timeline01.jpg') no-repeat;
+    background-size: cover;
+    grid-area: header;
+    height: 400px;
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.headerInner {
+    align-items: center;
+    display: flex;
+    justify-content: start;
+    margin-bottom: 50px
+}
+
+.userAvatar img {
+    border: 5px solid #00aef5;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
