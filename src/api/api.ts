@@ -63,7 +63,7 @@ export type AuthMeData = {
     email: string
 }
 
-export type UserProfileType = {
+export type UserProfileType = null | {
     aboutMe: string
     contacts: ContactsType
     fullName: string
