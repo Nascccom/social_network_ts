@@ -73,6 +73,32 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
             return {...state, profile: action.profile}
         case PROFILE.SET_STATUS:
             return {...state, status: action.status}
+        case PROFILE.CLICK_LIKE_OR_DISLIKE:
+            if (action.name === 'like' ) {
+                return {
+                    ...state,
+                    posts: state.posts.map(post => post.id === action.id
+                      ? {
+                          ...post,
+                          like: post.like + 1,
+                          dislike: post.dislike - (post.isDislike ? 1 : 0),
+                          isLike: true,
+                          isDislike: false,
+                      } : post)
+                }
+            } else {
+                return {
+                    ...state,
+                    posts: state.posts.map(post => post.id === action.id
+                      ? {
+                          ...post,
+                          like: post.like - (post.isLike ? 1 : 0),
+                          dislike: post.dislike + 1,
+                          isLike: false,
+                          isDislike: true,
+                      } : post)
+                }
+            }
         default:
             return state
     }
@@ -87,6 +113,10 @@ export const setProfileAC = (profile: UserProfileType) => ({type: PROFILE.SET_PR
 
 export const setStatusAC = (status: string) => ({type: PROFILE.SET_STATUS, status}) as const
 
+export const clickLikeOrDislikeAC = (id: string, name: string) => ({
+    type: PROFILE.CLICK_LIKE_OR_DISLIKE, id, name
+}) as const
+
 //Thunk Creator
 export const getUserProfileTC = (userId: string): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
@@ -98,7 +128,7 @@ export const getUserProfileTC = (userId: string): ThunkActionType => {
 export const getStatusTC = (userId: string): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
         const response = await profileAPI.getStatus(userId)
-          dispatch(setStatusAC(response.data))
+        dispatch(setStatusAC(response.data))
     }
 }
 
@@ -128,4 +158,5 @@ export type ProfileActionType =
   | ReturnType<typeof deletePostAC>
   | ReturnType<typeof setProfileAC>
   | ReturnType<typeof setStatusAC>
+  | ReturnType<typeof clickLikeOrDislikeAC>
 
