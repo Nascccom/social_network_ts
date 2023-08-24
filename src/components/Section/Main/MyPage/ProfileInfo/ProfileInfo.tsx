@@ -22,13 +22,18 @@ export const ProfileInfo = () => {
                     ? infoProfile?.lookingForAJobDescription
                     : "No information"}
               </p>
+
               <span> Полоса </span>
+
               <p>Contacts</p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
+
+              <span> Полоса </span>
+
+              <p>vk: {infoProfile?.contacts.vk || "vk.com"}</p>
+              <p>twitter: {infoProfile?.contacts.twitter || "twitter.com"}</p>
+              <p>facebook: {infoProfile?.contacts.facebook || "facebook.com"}</p>
+              <p>instagram: {infoProfile?.contacts.instagram || "instagram.com"}</p>
+              <p>github: {infoProfile?.contacts.github || "github.com"}</p>
           </div>
       </div>
     );

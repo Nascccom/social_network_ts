@@ -1,13 +1,13 @@
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo.tsx";
 import {AddPost} from "./AddPost/AddPost.tsx";
-import {Post} from "./Post/Post.tsx";
+import {Posts} from "./Posts/Posts.tsx";
 
 export const Profile = () => {
     return (
       <div>
           <ProfileInfo/>
           <AddPost/>
-          <Post/>
+          <Posts/>
       </div>
     );
 };
