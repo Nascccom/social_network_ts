@@ -9,11 +9,14 @@ import {
     faUserGroup,
 } from "@fortawesome/free-solid-svg-icons"
 import {NavLink} from "react-router-dom";
+import {FC} from "react";
+import {TitleWithUnderLine} from "../../../common/TitleWithUnderLine/TitleWithUnderLine.tsx";
 
-export const Nav = () => {
+export const Nav: FC<PropsType> = () => {
     return (
       <div className={style.nav}>
-          <p className={style.title}>Tabs</p>
+          <TitleWithUnderLine title={'Tabs'}/>
+
           <div className={style.link}>
               <FontAwesomeIcon icon={faCircleUser} size="lg" pull="left"/>
               <NavLink to="profile">My Page</NavLink>
@@ -41,3 +44,7 @@ export const Nav = () => {
       </div>
     );
 };
+
+type PropsType = {
+    // section: string
+}

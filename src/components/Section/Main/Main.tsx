@@ -1,8 +1,9 @@
 import {Route, Routes} from "react-router-dom";
 import {Profile} from "./MyPage/Profile.tsx";
 import style from "./Main.module.css"
+import {FC} from "react";
 
-export const Main = () => {
+export const Main: FC<PropsType> = () => {
 
     return (
       <div className={style.main}>
@@ -13,3 +14,7 @@ export const Main = () => {
       </div>
     );
 };
+
+type PropsType = {
+    // section: string
+}

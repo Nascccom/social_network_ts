@@ -1,5 +1,5 @@
 import style from "./Post.module.css";
-import userAvatar from "./../../../../../../img/userAvatar.png"
+import userAvatar from "../../../../../../img/userAvatar.png"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faComment, faThumbsDown, faThumbsUp, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {useAppSelector} from "../../../../../../hooks/useAppSelector.ts";

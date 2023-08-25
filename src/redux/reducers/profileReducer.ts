@@ -45,7 +45,6 @@ const initialState = {
     ],
     status: 'Set your status' as string
 }
-export type InitialStateType = typeof initialState
 
 export const profileReducer = (state: InitialStateType = initialState, action: ProfileActionType): InitialStateType => {
     switch (action.type) {
@@ -140,6 +139,8 @@ export const updateStatusTC = (status: string): ThunkActionType => {
 }
 
 //TYPES
+export type InitialStateType = typeof initialState
+
 export type PostType = {
     id: string
     name: string
