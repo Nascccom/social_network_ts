@@ -3,7 +3,7 @@ import style from './Header.module.css'
 import {useAppSelector} from "../../hooks/useAppSelector.ts";
 import userAvatar from "../../img/userAvatar.png"
 
-export const Header: FC<HeaderPropsType> = () => {
+export const Header: FC<PropsType> = () => {
 
     const infoProfile = useAppSelector(state => state.profileData.profile)
 
@@ -24,6 +24,6 @@ export const Header: FC<HeaderPropsType> = () => {
 };
 
 // TYPES
-type HeaderPropsType = {
+type PropsType = {
     // section: string
 }

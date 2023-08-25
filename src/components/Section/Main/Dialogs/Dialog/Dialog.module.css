@@ -1,0 +1,35 @@
+.dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact {
+    display: flex;
+    justify-content: start;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+}
+
+.avatar img {
+    width: 45px;
+    height: 45px;
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 15px;
+}
+
+.name {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.online {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 400;
+}

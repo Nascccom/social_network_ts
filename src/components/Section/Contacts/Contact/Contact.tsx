@@ -20,7 +20,7 @@ export const Contact: FC<PropsType> = ({
 
               <div className={style.contactInfo}>
                   <div className={style.name}>
-                      <NavLink to={`/messages/${id}`}>{name}</NavLink>
+                      <NavLink to={`/dialogs/${id}`}>{name}</NavLink>
                   </div>
                   <div className={style.email}>
                       {email}
