@@ -15,3 +15,8 @@ export enum PROFILE {
     SET_STATUS = 'SET-STATUS',
     CLICK_LIKE_OR_DISLIKE = 'CLICK-LIKE-OR-DISLIKE'
 }
+
+//USERS
+export enum USERS {
+    SET_USERS = "SET-USERS",
+}

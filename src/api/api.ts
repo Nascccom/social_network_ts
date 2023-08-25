@@ -15,17 +15,6 @@ export const authAPI = {
     },
 }
 
-export const friendsAPI = {
-    followingUser: (userId: number) => {
-        return instance.post<ResponseType>(`follow/${userId}`, {})
-          .then(res => res.data)
-    },
-    unfollowingUser: (userId: number) => {
-        return instance.delete<ResponseType>(`follow/${userId}`)
-          .then(res => res.data)
-    }
-}
-
 export const profileAPI = {
     getProfile (userId: string) {
         return instance.get<UserProfileType>(`profile/${userId}`)
@@ -40,10 +29,18 @@ export const profileAPI = {
 }
 
 export const usersAPI = {
-    getUsersOnPage: (pageSize: number = 1, currentPage: number = 10) => {
+    getUsers: (pageSize: number = 1, currentPage: number = 10) => {
         return instance.get<GetResponseUsersType>(`users?count=${pageSize}&page=${currentPage}`)
           .then(res => res.data)
     },
+    followingUser: (userId: number) => {
+        return instance.post<ResponseType>(`follow/${userId}`, {})
+          .then(res => res.data)
+    },
+    unfollowingUser: (userId: number) => {
+        return instance.delete<ResponseType>(`follow/${userId}`)
+          .then(res => res.data)
+    }
 }
 
 //TYPES
