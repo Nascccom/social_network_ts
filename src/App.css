@@ -1,1 +1,15 @@
+.App {
 
+}
+
+.sectionAll {
+    display: grid;
+    grid-template-areas: "nav main contacts";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 15px;
+
+    padding: 0 20px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
