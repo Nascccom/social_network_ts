@@ -16,11 +16,13 @@ export const authAPI = {
 }
 
 export const profileAPI = {
-    getProfile (userId: string) {
-        return instance.get<UserProfileType>(`profile/${userId}`)
+    getProfile: async (userId: number)=> {
+        const res = await instance.get<UserProfileType>(`profile/${userId}`)
+        return res.data
     },
-    getStatus: (userId: string) => {
-        return instance.get<string>(`profile/status/${userId}`)
+    getStatus: async (userId: number) => {
+        const res = await instance.get<string>(`profile/status/${userId}`)
+        return res.data
     },
     updateStatus: async (status: string) => {
         const res = await instance.put<ResponseType<string>>(`profile/status`, {status});

@@ -5,7 +5,7 @@ import {usersReducer} from "./reducers/usersReducer.ts";
 import {authReducer} from "./reducers/authReducer.ts";
 
 const rootReducer = combineReducers({
-    authReducer: authReducer,
+    authData: authReducer,
     profileData: profileReducer,
     usersData: usersReducer,
 })

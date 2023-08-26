@@ -117,17 +117,17 @@ export const clickLikeOrDislikeAC = (id: string, name: string) => ({
 }) as const
 
 //Thunk Creator
-export const getUserProfileTC = (userId: string): ThunkActionType => {
+export const getUserProfileTC = (userId: number): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
         const response = await profileAPI.getProfile(userId)
-        dispatch(setProfileAC(response.data))
+        dispatch(setProfileAC(response))
     }
 }
 
-export const getStatusTC = (userId: string): ThunkActionType => {
+export const getStatusTC = (userId: number): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
         const response = await profileAPI.getStatus(userId)
-        dispatch(setStatusAC(response.data))
+        dispatch(setStatusAC(response))
     }
 }
 

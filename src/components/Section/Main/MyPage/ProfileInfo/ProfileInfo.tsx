@@ -3,9 +3,21 @@ import {ProfileStatus} from "./ProfileStatus.tsx";
 import userAvatar from "../../../../../img/userAvatar.png"
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {UserAvatar} from "../../../../../common/UserAvatar/UserAvatar.tsx";
+import {useEffect} from "react";
+import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
+import {getUserProfileTC} from "../../../../../redux/reducers/profileReducer.ts";
 
 export const ProfileInfo = () => {
     const infoProfile = useAppSelector(state => state.profileData.profile)
+    const authId = useAppSelector(state => state.authData.userId)
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (authId) {
+            dispatch(getUserProfileTC(authId))
+        }
+    }, [dispatch, authId])
 
     return (
       <div className={style.profileInfo}>
