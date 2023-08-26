@@ -1,13 +1,17 @@
 .profileInfo {
     display: flex;
+    justify-content: space-around;
     background-color: #eee1e1;
     margin-bottom: 20px;
-    padding: 20px
+    padding: 20px;
 }
 
 .userAvatar img {
     border-radius: 50%;
     height: 200px;
     width: 200px;
-    margin: 0 20px 0 0;
+}
+
+hr {
+    border: 1px groove #918e8e;
 }

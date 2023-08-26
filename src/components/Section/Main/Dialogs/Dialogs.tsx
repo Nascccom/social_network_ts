@@ -3,10 +3,15 @@ import {TitleWithUnderLine} from "../../../../common/TitleWithUnderLine/TitleWit
 import {Contact} from "../../Contacts/Contact/Contact.tsx";
 import {useAppSelector} from "../../../../hooks/useAppSelector.ts";
 import {FriendType} from "../../../../redux/reducers/usersReducer.ts";
-import {AddForm} from "./AddForm/AddForm.tsx";
 import {Dialog} from "./Dialog/Dialog.tsx";
+import {useState} from "react";
+
+
+
 
 export const Dialogs = () => {
+    const [friendId, setFriendId] = useState<string>('')
+
     const friendContacts = useAppSelector<FriendType[]>(
       state => state.usersData.friends)
 
@@ -18,7 +23,10 @@ export const Dialogs = () => {
                sex={f.sex}
                photo={f.photo}
                name={f.name}
-               email={f.email}/>))
+               email={f.email}
+               setFriendId={setFriendId}
+      />
+    ))
 
     return (
       <div className={style.dialogs}>
@@ -30,8 +38,8 @@ export const Dialogs = () => {
               </div>
 
               <div className={style.main}>
-                  <Dialog/>
-                  <AddForm/>
+                  <Dialog friendId={friendId}/>
+                  {/*<AddForm friendId={friendId}/>*/}
               </div>
           </div>
       </div>

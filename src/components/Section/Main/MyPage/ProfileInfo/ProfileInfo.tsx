@@ -2,16 +2,19 @@ import style from './ProfileInfo.module.css'
 import {ProfileStatus} from "./ProfileStatus.tsx";
 import userAvatar from "../../../../../img/userAvatar.png"
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
+import {UserAvatar} from "../../../../../common/UserAvatar/UserAvatar.tsx";
 
 export const ProfileInfo = () => {
     const infoProfile = useAppSelector(state => state.profileData.profile)
+
     return (
       <div className={style.profileInfo}>
-          <div className={style.userAvatar}>
-              <img
-                src={infoProfile?.photos.large ? infoProfile.photos.large : userAvatar} alt="userAvatar"/>
+          <div className={style.photoAndStatusBlock}>
+              <UserAvatar photo={infoProfile?.photos.large || userAvatar}
+                          alt={'userAvatar'}/>
               <ProfileStatus/>
           </div>
+
           <div>
               <p>Name: {infoProfile?.fullName}</p>
               <p>About Me:
@@ -23,11 +26,11 @@ export const ProfileInfo = () => {
                     : "No information"}
               </p>
 
-              <span> Полоса </span>
+              <hr/>
 
               <p>Contacts</p>
 
-              <span> Полоса </span>
+              <hr/>
 
               <p>vk: {infoProfile?.contacts.vk || "vk.com"}</p>
               <p>twitter: {infoProfile?.contacts.twitter || "twitter.com"}</p>

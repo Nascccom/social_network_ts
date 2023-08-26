@@ -18,29 +18,33 @@ export const Contacts = () => {
     const filteredFriends = friendContacts.filter(f =>
       f.name.toLowerCase().includes(filterValue))
 
+
     const mappedFriends = filteredFriends.map(f => (
       <Contact key={f.id}
                id={f.id}
                sex={f.sex}
                photo={f.photo}
                name={f.name}
-               email={f.email}/>))
+               email={f.email}
+      />))
 
-    return (
-      <div className={style.contacts}>
-          <TitleWithUnderLine title={'Contacts'} styles={style.title}/>
 
-          <div>
-              <input className={style.search}
-                     type="search"
-                     placeholder={"Search contact..."}
-                     onChange={onChangeFilterHandler}/>
+
+        return (
+          <div className={style.contacts}>
+              <TitleWithUnderLine title={'Contacts'} styles={style.title}/>
+
+              <div>
+                  <input className={style.search}
+                         type="search"
+                         placeholder={"Search contact..."}
+                         onChange={onChangeFilterHandler}/>
+              </div>
+
+              <div className={style.contactsList}>
+                  {mappedFriends}
+              </div>
           </div>
-
-          <div className={style.contactsList}>
-              {mappedFriends}
-          </div>
-      </div>
-    );
+        );
 };
 

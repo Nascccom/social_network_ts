@@ -5,7 +5,8 @@ import {usersReducer} from "./reducers/usersReducer.ts";
 
 const rootReducer = combineReducers({
     profileData: profileReducer,
-    usersData: usersReducer
+    usersData: usersReducer,
+
 })
 
 export const store = configureStore({reducer: rootReducer})

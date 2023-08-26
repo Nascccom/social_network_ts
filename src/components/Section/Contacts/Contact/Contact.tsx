@@ -1,33 +1,40 @@
 import style from "./Contact.module.css";
 import {FC} from "react";
-import maleFriendAvatar from "./../../../../img/maleFriend.png"
-import femaleFriend from "./../../../../img/femaleFriend.png"
 import {NavLink} from "react-router-dom";
+import {UserAvatar} from "../../../../common/UserAvatar/UserAvatar.tsx";
 
 export const Contact: FC<PropsType> = ({
                                            id,
                                            sex,
                                            photo,
                                            name,
-                                           email
+                                           email,
+                                           setFriendId
                                        }) => {
 
-        return (
-          <div className={style.contact}>
-              <div className={style.avatar}>
-                  <img src={sex === "male" ? maleFriendAvatar : femaleFriend} alt={photo}/>
-              </div>
+    const onClickContactHandler = () => {
+        if (setFriendId) {
+            setFriendId(id)
+        }
+    }
 
-              <div className={style.contactInfo}>
-                  <div className={style.name}>
-                      <NavLink to={`/dialogs/${id}`}>{name}</NavLink>
-                  </div>
-                  <div className={style.email}>
-                      {email}
-                  </div>
+    return (
+      <div className={style.contact}>
+          <UserAvatar photo={photo} sex={sex} alt={name} styles={style.avatar}/>
+
+          <div className={style.contactInfo}>
+              <div className={style.name}>
+                  <NavLink to={`/dialogs/${id}`}
+                           onClick={onClickContactHandler}>
+                      {name}
+                  </NavLink>
+              </div>
+              <div className={style.email}>
+                  {email}
               </div>
           </div>
-        );
+      </div>
+    );
 };
 
 type PropsType = {
@@ -36,4 +43,5 @@ type PropsType = {
     photo: string
     name: string
     email: string
+    setFriendId?: (friendId: string) => void
 }

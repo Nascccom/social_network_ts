@@ -10,8 +10,13 @@ const initialState = {
             photo: 'Katya Salimova',
             followed: true,
             status: 'Life is cool',
-            email: 'ttt_0a@bk.ru'
-        } as FriendType,
+            email: 'ttt_0a@bk.ru',
+            messages: [
+                {id: v1(), message: 'Hello! How are you?'},
+                {id: v1(), message: 'I love you!'},
+                {id: v1(), message: 'Yo'},
+            ]
+        },
         {
             id: v1(),
             sex: "male",
@@ -19,7 +24,11 @@ const initialState = {
             photo: 'Ruslan Smirnov',
             followed: true,
             status: 'Ooops!',
-            email: 'ruslan@mail.ru'
+            email: 'ruslan@mail.ru',
+            messages: [
+                {id: v1(), message: 'Hello!'},
+                {id: v1(), message: 'You are crazy!'},
+            ]
         },
         {
             id: v1(),
@@ -28,7 +37,11 @@ const initialState = {
             photo: 'Artem Gurin',
             followed: true,
             status: 'Doctor!',
-            email: 'tatatumba@mail.ru'
+            email: 'tatatumba@mail.ru',
+            messages: [
+                {id: v1(), message: 'You like it?!'},
+                {id: v1(), message: 'No, of course!'},
+            ]
         },
         {
             id: v1(),
@@ -37,7 +50,8 @@ const initialState = {
             photo: 'Vasya Bond',
             followed: true,
             status: 'BlaBla!',
-            email: 'vasyabond@mail.ru'
+            email: 'vasyabond@mail.ru',
+            messages: []
         },
         {
             id: v1(),
@@ -46,7 +60,8 @@ const initialState = {
             photo: 'Maks Rubik',
             followed: true,
             status: 'School!',
-            email: 'maksim@gmail.com'
+            email: 'maksim@gmail.com',
+            messages: []
         },
         {
             id: v1(),
@@ -55,7 +70,8 @@ const initialState = {
             photo: 'Matte Salimov',
             followed: true,
             status: 'Kill you!',
-            email: 'matte_salimov@gmail.com'
+            email: 'matte_salimov@gmail.com',
+            messages: []
         },
         {
             id: v1(),
@@ -64,7 +80,8 @@ const initialState = {
             photo: 'Sophi Loran',
             followed: true,
             status: 'Singer!',
-            email: 'loren1995@gmail.com'
+            email: 'loren1995@gmail.com',
+            messages: []
         },
         {
             id: v1(),
@@ -73,7 +90,8 @@ const initialState = {
             photo: 'Marusya Bulkina',
             followed: true,
             status: 'Top!',
-            email: 'smara@gmail.com'
+            email: 'smara@gmail.com',
+            messages: []
         },
         {
             id: v1(),
@@ -82,7 +100,8 @@ const initialState = {
             photo: 'Papa Jons',
             followed: true,
             status: 'Pizza forever!',
-            email: 'papaJons@gmail.com'
+            email: 'papaJons@gmail.com',
+            messages: []
         },
         {
             id: v1(),
@@ -91,7 +110,8 @@ const initialState = {
             photo: 'Vova Salimov',
             followed: true,
             status: 'Yo!',
-            email: 'vovan@gmail.com'
+            email: 'vovan@gmail.com',
+            messages: []
         },
     ] as FriendType[],
     foundFriends: [] as FriendType[],
@@ -105,14 +125,39 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
     switch (action.type) {
         case USERS.SET_USERS:
             return {...state, foundFriends: action.friends}
+        case USERS.ADD_USERS_MESSAGE:
+            return {
+                ...state,
+                friends: state.friends.map(f => f.id === action.userId
+                  ? {
+                      ...f,
+                      messages: [...f.messages, {
+                          id: v1(),
+                          message: action.newMessage
+                      }]
+                  }
+                  : f
+                )
+            }
         default:
             return state
     }
 }
 
+
+//ACTION CREATORS
 export const setUsersAC = (friends: FriendType[]) => ({type: USERS.SET_USERS, friends}) as const
 
+export const addMessageAC = (userId: string, newMessage: string) => ({
+    type: USERS.ADD_USERS_MESSAGE, userId, newMessage
+}) as const
+
+
 //TYPES
+type UsersActionType =
+  | ReturnType<typeof setUsersAC>
+  | ReturnType<typeof addMessageAC>
+
 type InitialStateType = typeof initialState
 
 export type FriendType = {
@@ -122,10 +167,15 @@ export type FriendType = {
     photo: string,
     followed: boolean,
     status: string,
-    email: string
+    email: string,
+    messages: MessageType[]
 }
 
-type UsersActionType =
-    | ReturnType<typeof setUsersAC>
+export type MessageType = {
+    id: string
+    message: string
+}
+
+
 
 

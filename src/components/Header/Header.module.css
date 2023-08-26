@@ -20,9 +20,3 @@
     justify-content: start;
     margin-bottom: 50px
 }
-
-.userAvatar img {
-    border-radius: 50%;
-    height: 200px;
-    width: 200px;
-}
