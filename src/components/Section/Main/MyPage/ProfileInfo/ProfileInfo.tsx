@@ -27,9 +27,7 @@ export const ProfileInfo = () => {
               </p>
 
               <hr/>
-
               <p>Contacts</p>
-
               <hr/>
 
               <p>vk: {infoProfile?.contacts.vk || "vk.com"}</p>

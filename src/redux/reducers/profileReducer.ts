@@ -139,6 +139,13 @@ export const updateStatusTC = (status: string): ThunkActionType => {
 }
 
 //TYPES
+export type ProfileActionType =
+  | ReturnType<typeof addPostAC>
+  | ReturnType<typeof deletePostAC>
+  | ReturnType<typeof setProfileAC>
+  | ReturnType<typeof setStatusAC>
+  | ReturnType<typeof clickLikeOrDislikeAC>
+
 export type InitialStateType = typeof initialState
 
 export type PostType = {
@@ -154,10 +161,5 @@ export type PostType = {
     isDislike: boolean
 }
 
-export type ProfileActionType =
-  | ReturnType<typeof addPostAC>
-  | ReturnType<typeof deletePostAC>
-  | ReturnType<typeof setProfileAC>
-  | ReturnType<typeof setStatusAC>
-  | ReturnType<typeof clickLikeOrDislikeAC>
+
 

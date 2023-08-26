@@ -6,6 +6,12 @@
     padding: 20px;
 }
 
+.photoAndStatusBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .userAvatar img {
     border-radius: 50%;
     height: 200px;
