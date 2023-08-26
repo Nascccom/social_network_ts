@@ -9,9 +9,9 @@ export const instance = axios.create({
 });
 
 export const authAPI = {
-    getAuthMe: () => {
-        return instance.get<ResponseType<AuthMeData>>(`auth/me`)
-          .then(res => res.data)
+    getAuthMe: async () => {
+        const res = await instance.get<ResponseType<AuthMeDataType>>(`auth/me`);
+        return res.data;
     },
 }
 
@@ -22,24 +22,24 @@ export const profileAPI = {
     getStatus: (userId: string) => {
         return instance.get<string>(`profile/status/${userId}`)
     },
-    updateStatus: (status: string) => {
-        return instance.put<ResponseType<string>>(`/profile/status`, {status})
-          .then(res => res.data)
+    updateStatus: async (status: string) => {
+        const res = await instance.put<ResponseType<string>>(`profile/status`, {status});
+        return res.data;
     }
 }
 
 export const usersAPI = {
-    getUsers: (pageSize: number = 1, currentPage: number = 10) => {
-        return instance.get<GetResponseUsersType>(`users?count=${pageSize}&page=${currentPage}`)
-          .then(res => res.data)
+    getUsers: async (pageSize: number = 1, currentPage: number = 10) => {
+        const res = await instance.get<GetResponseUsersType>(`users?count=${pageSize}&page=${currentPage}`);
+        return res.data;
     },
-    followingUser: (userId: number) => {
-        return instance.post<ResponseType>(`follow/${userId}`, {})
-          .then(res => res.data)
+    followingUser: async (userId: number) => {
+        const res = await instance.post<ResponseType>(`follow/${userId}`, {});
+        return res.data;
     },
-    unfollowingUser: (userId: number) => {
-        return instance.delete<ResponseType>(`follow/${userId}`)
-          .then(res => res.data)
+    unfollowingUser: async (userId: number) => {
+        const res = await instance.delete<ResponseType>(`follow/${userId}`);
+        return res.data;
     }
 }
 
@@ -52,7 +52,7 @@ export type ResponseType<T={}> = {
     fieldsErrors: string[]
 }
 
-export type AuthMeData = {
+export type AuthMeDataType = {
     id: number
     login: string
     email: string

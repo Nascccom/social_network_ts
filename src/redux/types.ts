@@ -1,8 +1,10 @@
 import {RootState} from "./store.ts";
 import {ThunkDispatch, ThunkAction} from "redux-thunk"
 import {ProfileActionType} from "./reducers/profileReducer.ts";
+import {AuthActionTypes} from "./reducers/authReducer.ts";
+import {UsersActionType} from "./reducers/usersReducer.ts";
 
-type ActionTypeForApp = ProfileActionType
+type ActionTypeForApp = ProfileActionType | AuthActionTypes | UsersActionType
 
 export type ThunkActionType = ThunkAction<void, RootState, unknown, ActionTypeForApp>
 export type ThunkDispatchType = ThunkDispatch<RootState, unknown, ActionTypeForApp>
@@ -19,5 +21,10 @@ export enum PROFILE {
 //USERS
 export enum USERS {
     SET_USERS = "SET-USERS",
-    ADD_USERS_MESSAGE = 'ADD-USERS-MESSAGE',
+    ADD_USERS_MESSAGE = "ADD-USERS-MESSAGE",
+}
+
+//AUTH
+export enum AUTH {
+    SET_AUTH_DATA = "SET-AUTH-DATA"
 }

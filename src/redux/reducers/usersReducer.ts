@@ -154,7 +154,7 @@ export const addMessageAC = (userId: string, newMessage: string) => ({
 
 
 //TYPES
-type UsersActionType =
+export type UsersActionType =
   | ReturnType<typeof setUsersAC>
   | ReturnType<typeof addMessageAC>
 
