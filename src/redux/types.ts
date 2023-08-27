@@ -26,5 +26,6 @@ export enum USERS {
 
 //AUTH
 export enum AUTH {
-    SET_AUTH_DATA = "SET-AUTH-DATA"
+    SET_AUTH_DATA = "SET-AUTH-DATA",
+    STOP_SUBMIT = "STOP-SUBMIT"
 }
