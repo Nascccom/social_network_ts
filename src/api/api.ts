@@ -13,10 +13,19 @@ export const authAPI = {
         const res = await instance.get<ResponseType<AuthMeDataType>>(`auth/me`);
         return res.data;
     },
+    loginAuth: async (email: string, password: string, rememberMe: boolean = false) => {
+        const res = await instance
+          .post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe})
+        return res.data;
+    },
+    logoutAuth: async () => {
+        const res = await instance.delete<ResponseType>(`auth/login`)
+        return res.data;
+    }
 }
 
 export const profileAPI = {
-    getProfile: async (userId: number)=> {
+    getProfile: async (userId: number) => {
         const res = await instance.get<UserProfileType>(`profile/${userId}`)
         return res.data
     },
@@ -47,7 +56,7 @@ export const usersAPI = {
 
 //TYPES
 
-export type ResponseType<T={}> = {
+export type ResponseType<T = {}> = {
     resultCode: number
     messages: string[]
     data: T
