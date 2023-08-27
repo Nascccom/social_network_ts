@@ -1,0 +1,36 @@
+.form {
+    border: 2px solid #af75e7;
+    margin: 0 20px;
+    text-align: end;
+    width: 100%;
+    background-color: #fff;
+}
+
+.form textarea {
+    height: 60px;
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    outline: none;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+}
+
+.form button {
+    background-color: #af75e7;
+    border: none;
+    border-radius: 5px;
+    color: rgba(12, 19, 18, 0.83);
+    font-size: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    height: 30px;
+    margin: 10px;
+    transition: background-color .2s linear;
+    width: 80px;
+}
+
+.form button:hover{
+    background-color: #07a3e3;
+}
