@@ -4,7 +4,8 @@ export const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
     headers: {
-        'API-KEY': 'ebfb5f07-e710-4065-9ddd-9255b91b910e'
+        'API-KEY': 'ebfb5f07-e710-4065-9ddd-9255b91b910e',
+        "content-type": "multipart/form-data"
     }
 });
 
@@ -14,8 +15,8 @@ export const authAPI = {
         return res.data;
     },
     loginAuth: async (email: string, password: string, rememberMe: boolean = false) => {
-        const res =
-          await instance.post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe})
+        const res = await instance
+          .post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe})
         return res.data;
     },
     logoutAuth: async () => {
@@ -36,19 +37,30 @@ export const profileAPI = {
     updateStatus: async (status: string) => {
         const res = await instance.put<ResponseType<string>>(`profile/status`, {status});
         return res.data;
+    },
+    updateProfileInfo: async (info: UpdateInfoProfileType) => {
+        const res = await instance.put<ResponseType>('/profile', info)
+        return res.data
+    },
+    updatePhotoProfile: async (newPhoto: any) => {
+        const newFormData = new FormData()
+        newFormData.append('photo', newPhoto)
+        const res = await instance.put<ResponseType<PhotosType>>('profile/photo', newFormData)
+        return res.data
     }
 }
 
 export const usersAPI = {
     getUsers: async (pageSize: number = 1, currentPage: number = 10) => {
-        const res = await instance.get<GetResponseUsersType>(`users?count=${pageSize}&page=${currentPage}`);
+        const res = await instance
+          .get<GetResponseUsersType<UserItemType>>(`users?count=${pageSize}&page=${currentPage}`);
         return res.data;
     },
-    followingUser: async (userId: number) => {
+    followingUser: async (userId: string) => {
         const res = await instance.post<ResponseType>(`follow/${userId}`, {});
         return res.data;
     },
-    unfollowingUser: async (userId: number) => {
+    unfollowingUser: async (userId: string) => {
         const res = await instance.delete<ResponseType>(`follow/${userId}`);
         return res.data;
     }
@@ -75,8 +87,13 @@ export type UserProfileType = {
     fullName: string
     lookingForAJob: boolean
     lookingForAJobDescription: string
-    photos: { small: string, large: string }
+    photos: PhotosType
     userId: number
+}
+
+export type PhotosType = {
+    small: string | null
+    large: string | null
 }
 
 export type ContactsType = {
@@ -90,8 +107,25 @@ export type ContactsType = {
     youtube: null | string
 }
 
-export type GetResponseUsersType = {
-    items: []
+export type GetResponseUsersType<T = {}> = {
+    items: T[]
     totalCount: number
     error: null
+}
+
+export type UserItemType = {
+    followed: boolean
+    id: string
+    name: string
+    photos: PhotosType
+    status: null | string
+}
+
+
+export type UpdateInfoProfileType = {
+    userId: number
+    fullName: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    contacts: ContactsType
 }

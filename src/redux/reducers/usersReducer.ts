@@ -1,5 +1,6 @@
 import {v1} from "uuid";
-import {USERS} from "../types.ts";
+import {ThunkActionType, ThunkDispatchType, USERS} from "../types.ts";
+import {usersAPI} from "../../api/api.ts";
 
 const initialState = {
     users: [
@@ -141,16 +142,25 @@ const initialState = {
         },
     ] as FriendType[],
     foundFriends: [] as FriendType[],
+    currentPage: 5,
     pageSize: 10,
-    totalCount: 0,
+    totalCountUsers: 0,
     isFetching: false,
     isFollowingInProgress: [] as string[]
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: UsersActionType): InitialStateType => {
     switch (action.type) {
+        case USERS.FOLLOW_OR_UNFOLLOW_USERS:
+            return {
+                ...state,
+                users: state.users.map(f => f.id === action.userId
+                  ? {...f, followed: action.follow}
+                  : f
+                )
+            }
         case USERS.SET_USERS:
-            return {...state, foundFriends: action.friends}
+            return {...state, foundFriends: action.users}
         case USERS.ADD_USERS_MESSAGE:
             return {
                 ...state,
@@ -165,11 +175,41 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
                   : f
                 )
             }
-        case USERS.FOLLOW_OR_UNFOLLOW:
+        case USERS.SET_CURRENT_PAGE:
             return {
                 ...state,
-                users: state.users.map(f => f.id === action.userId
-                  ? {...f, followed: action.follow}
+                currentPage: action.currentPage
+            }
+        case USERS.SET_TOTAL_COUNT_USERS:
+            return {
+                ...state,
+                totalCountUsers: action.totalCountUsers
+            }
+        case USERS.TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        case USERS.TOGGLE_IS_FOLLOWING_IN_PROGRESS:
+            return {
+                ...state,
+                isFollowingInProgress: action.isFollowingInProgress
+                  ? [...state.isFollowingInProgress, action.userId]
+                  : state.isFollowingInProgress.filter(id => id !== action.userId)
+            }
+        case USERS.FOLLOW_FRIEND:
+            return {
+                ...state,
+                foundFriends: state.foundFriends.map(f => f.id === action.userId
+                  ? {...f, followed: true}
+                  : f
+                )
+            }
+        case USERS.UNFOLLOW_FRIEND:
+            return {
+                ...state,
+                foundFriends: state.foundFriends.map(f => f.id === action.userId
+                  ? {...f, followed: false}
                   : f
                 )
             }
@@ -180,7 +220,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
 
 
 //ACTION CREATORS
-export const setUsersAC = (friends: FriendType[]) => ({type: USERS.SET_USERS, friends}) as const
+export const followOrUnfollowUsersAC = (userId: string, follow: boolean) => ({
+    type: USERS.FOLLOW_OR_UNFOLLOW_USERS, userId, follow
+}) as const
+
+export const setUsersAC = (users: FriendType[]) => ({type: USERS.SET_USERS, users}) as const
 
 export const addMessageAC = (userId: string, newMessage: string) => {
     console.log(userId, newMessage)
@@ -189,29 +233,103 @@ export const addMessageAC = (userId: string, newMessage: string) => {
     }) as const
 }
 
-export const followOrUnfollowAC = (userId: string, follow: boolean) => ({
-    type: USERS.FOLLOW_OR_UNFOLLOW, userId, follow
+export const setCurrentPageAC = (currentPage: number) => ({type: USERS.SET_CURRENT_PAGE, currentPage}) as const
+
+export const setTotalCountUsersAC = (totalCountUsers: number) => ({
+    type: USERS.SET_TOTAL_COUNT_USERS,
+    totalCountUsers
 }) as const
+
+export const toggleIsFetchingAC = (isFetching: boolean) => ({
+    type: USERS.TOGGLE_IS_FETCHING, isFetching
+}) as const
+
+export const toggleIsFollowingInProgressAC = (userId: string, isFollowingInProgress: boolean) => ({
+    type: USERS.TOGGLE_IS_FOLLOWING_IN_PROGRESS, userId, isFollowingInProgress
+}) as const
+
+export const followingUserAC = (userId: string) => ({type: USERS.FOLLOW_FRIEND, userId}) as const
+
+export const unfollowingUserAC = (userId: string) => ({type: USERS.UNFOLLOW_FRIEND, userId}) as const
+
+
+
+//THUNK CREATORS
+export const getUsersTC = (currentPage: number, pageSize: number): ThunkActionType => {
+    return async (dispatch: ThunkDispatchType) => {
+        dispatch(toggleIsFetchingAC(true))
+        const response = await usersAPI.getUsers(pageSize, currentPage)
+
+        const users: FriendType[] = response.items.map(u => {
+            return {
+                id: u.id,
+                sex: "male",
+                name: u.name,
+                photo: !u.photos.small ? '' : u.photos.small,
+                followed: u.followed,
+                status: !u.status ? "No status" : u.status,
+                email: `${u.name.replace(' ', "_").toLowerCase()}@mail.ru`,
+                messages: []
+            }
+        })
+
+        dispatch(setUsersAC(users))
+        dispatch(toggleIsFetchingAC(false))
+        dispatch(setTotalCountUsersAC(response.totalCount))
+    }
+}
+
+export const followingUserTC = (userId: string): ThunkActionType => {
+    return async (dispatch: ThunkDispatchType) => {
+        dispatch(toggleIsFollowingInProgressAC(userId, true))
+
+        const response = await usersAPI.followingUser(userId)
+        if (response.resultCode === 0) {
+            dispatch(followingUserAC(userId))
+            dispatch(toggleIsFollowingInProgressAC(userId, false))
+        }
+    }
+}
+
+export const unfollowingUserTC = (userId: string): ThunkActionType => {
+    return async (dispatch: ThunkDispatchType) => {
+        dispatch(toggleIsFollowingInProgressAC(userId, true))
+
+        const response = await usersAPI.unfollowingUser(userId)
+        if (response.resultCode === 0) {
+            dispatch(unfollowingUserAC(userId))
+            dispatch(toggleIsFollowingInProgressAC(userId, false))
+        }
+    }
+}
 
 
 //TYPES
 export type UsersActionType =
   | ReturnType<typeof setUsersAC>
   | ReturnType<typeof addMessageAC>
-  | ReturnType<typeof followOrUnfollowAC>
+  | ReturnType<typeof followOrUnfollowUsersAC>
+  | ReturnType<typeof setCurrentPageAC>
+  | ReturnType<typeof setTotalCountUsersAC>
+  | ReturnType<typeof toggleIsFetchingAC>
+  | ReturnType<typeof toggleIsFollowingInProgressAC>
+  | ReturnType<typeof followingUserAC>
+  | ReturnType<typeof unfollowingUserAC>
 
 type InitialStateType = typeof initialState
 
 export type FriendType = {
-    id: string,
-    sex: "male" | "female"
-    name: string,
-    photo: string,
-    followed: boolean,
-    status: string,
-    email: string,
+    id: string
+    sex: SexType
+    name: string
+    photo: string
+    followed: boolean
+    status: string
+    email: string
     messages: MessageType[]
 }
+
+export type SexType = "male" | "female"
 
 export type MessageType = {
     id: string
