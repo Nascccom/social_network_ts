@@ -2,10 +2,12 @@ import style from "./FriendsPage.module.css"
 import {NavLink, Route, Routes} from "react-router-dom";
 import {MyFriends} from "./MyFriends/MyFriends.tsx";
 import {TitleWithUnderLine} from "../../../../common/TitleWithUnderLine/TitleWithUnderLine.tsx";
-import {FriendRequest} from "./FriendRequest/FriendRequest.tsx";
 import {FindFriends} from "./FindFriends/FindFriends.tsx";
+import {useState} from "react";
 
 export const FriendsPage = () => {
+    const [filterFriend, setFilterFriend] = useState(true)
+
 
     return (
       <div className={style.friendsPage}>
@@ -13,10 +15,10 @@ export const FriendsPage = () => {
               <TitleWithUnderLine title={'Friends'} styles={style.title}/>
 
               <div className={style.titlesGroup}>
-                  <NavLink to={'my'}>
+                  <NavLink to={'my'} onClick={() => setFilterFriend(true)}>
                       <TitleWithUnderLine title={'Друзья'}/>
                   </NavLink>
-                  <NavLink to={'requests'}>
+                  <NavLink to={'requests'} onClick={() => setFilterFriend(false)}>
                       <TitleWithUnderLine title={'Запросы'}/>
                   </NavLink>
                   <NavLink to={'find'}>
@@ -27,9 +29,9 @@ export const FriendsPage = () => {
 
 
           <Routes>
-
-              <Route path={'/my'} element={<MyFriends/>}/>
-              <Route path={'/requests'} element={<FriendRequest/>}/>
+              {/*<Route path={'*'} element={<MyFriends/>}/>*/}
+              <Route path={'/my'} element={<MyFriends filter={filterFriend}/>}/>
+              <Route path={'/requests'} element={<MyFriends filter={filterFriend}/>}/>
               <Route path={'/find'} element={<FindFriends/>}/>
           </Routes>
       </div>

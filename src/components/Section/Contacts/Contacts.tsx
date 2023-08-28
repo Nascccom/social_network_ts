@@ -8,29 +8,29 @@ import {ContactsElement} from "./ContactsElement/ContactsElement.tsx";
 
 export const Contacts = () => {
     const friendContacts = useAppSelector<FriendType[]>(
-      state => state.usersData.friends)
+      state => state.usersData.users)
 
     const [filterValue, setFilterValue] = useState('')
 
     const onChangeFilterHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setFilterValue(e.currentTarget.value)
     }
-    const filteredFriends = friendContacts.filter(f =>
+    const filteredFriends = friendContacts.filter(f => f.followed &&
       f.name.toLowerCase().includes(filterValue))
 
-        return (
-          <div className={style.contacts}>
-              <TitleWithUnderLine title={'Contacts'} styles={style.title}/>
+    return (
+      <div className={style.contacts}>
+          <TitleWithUnderLine title={'Contacts'} styles={style.title}/>
 
-              <div>
-                  <input className={style.search}
-                         type="search"
-                         placeholder={"Search contact..."}
-                         onChange={onChangeFilterHandler}/>
-              </div>
-
-              <ContactsElement contactsArray={filteredFriends}/>
+          <div>
+              <input className={style.search}
+                     type="search"
+                     placeholder={"Search contact..."}
+                     onChange={onChangeFilterHandler}/>
           </div>
-        );
+
+          <ContactsElement contactsArray={filteredFriends}/>
+      </div>
+    );
 };
 

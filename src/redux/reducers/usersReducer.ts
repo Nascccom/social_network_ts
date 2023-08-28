@@ -2,7 +2,7 @@ import {v1} from "uuid";
 import {USERS} from "../types.ts";
 
 const initialState = {
-    friends: [
+    users: [
         {
             id: v1(),
             sex: "female",
@@ -154,7 +154,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
         case USERS.ADD_USERS_MESSAGE:
             return {
                 ...state,
-                friends: state.friends.map(f => f.id === action.userId
+                users: state.users.map(f => f.id === action.userId
                   ? {
                       ...f,
                       messages: [...f.messages, {
@@ -168,7 +168,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
         case USERS.FOLLOW_OR_UNFOLLOW:
             return {
                 ...state,
-                friends: state.friends.map(f => f.id === action.userId
+                users: state.users.map(f => f.id === action.userId
                   ? {...f, followed: action.follow}
                   : f
                 )
