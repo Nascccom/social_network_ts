@@ -35,4 +35,5 @@ export enum USERS {
 export enum AUTH {
     SET_AUTH_DATA = "SET-AUTH-DATA",
     STOP_SUBMIT = "STOP-SUBMIT",
+    TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING",
 }

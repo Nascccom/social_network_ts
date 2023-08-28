@@ -32,6 +32,7 @@ export const FriendCard: FC<PropsType> = ({
                   callBack={onClickFollowHandler}
                   styles={style.btn}
                   disabled={disabled}
+                  status={followed}
           />
       </div>
     );

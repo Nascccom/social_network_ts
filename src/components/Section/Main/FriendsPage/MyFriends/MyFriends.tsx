@@ -1,6 +1,6 @@
 import style from './MyFriends.module.css'
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
-import {followOrUnfollowAC, FriendType} from "../../../../../redux/reducers/usersReducer.ts";
+import {followOrUnfollowUsersAC, FriendType} from "../../../../../redux/reducers/usersReducer.ts";
 import {FriendCard} from "../FriendCard/FriendCard.tsx";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 
@@ -19,7 +19,7 @@ export const MyFriends = (props: PropsType) => {
     }
 
     const changeStatusFollow = (id: string, follow: boolean) => {
-        dispatch(followOrUnfollowAC(id, !follow))
+        dispatch(followOrUnfollowUsersAC(id, !follow))
     }
 
     const mappedFriends = filteredUsers.map(f => {
@@ -29,7 +29,8 @@ export const MyFriends = (props: PropsType) => {
                            followed={f.followed}
                            status={f.status}
                            photo={f.photo}
-                           callback={changeStatusFollow}/>
+                           callback={changeStatusFollow}
+        />
 
     })
 

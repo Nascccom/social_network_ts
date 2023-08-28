@@ -9,8 +9,9 @@ export const Button: FC<PropsType> = ({
                                           status
                                       }) => {
     const styleBtn = status
-      ? `${style.btn} ${style.violet} ${styles}`
-      : `${style.btn} ${style.grey} ${styles}`
+      ? `${style.btn} ${style.blue} ${styles}`
+      : `${style.btn} ${style.violet} ${styles}`
+
 
     return (
       <button className={styleBtn}

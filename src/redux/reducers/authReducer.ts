@@ -7,7 +7,7 @@ const initialState = {
     email: null as null | string,
     isAuth: false,
     rememberMe: false,
-    errorMessageSubmit: ''
+    errorMessageSubmit: '',
 }
 
 export const authReducer = (state: InitialStateType = initialState, action: AuthActionTypes): InitialStateType => {
@@ -20,7 +20,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Auth
         case AUTH.STOP_SUBMIT:
             return {
                 ...state,
-                errorMessageSubmit: action.payload.errorMessageSubmit
+                errorMessageSubmit: action.errorMessageSubmit
             }
         default:
             return state
@@ -41,9 +41,7 @@ export const setAuthDataAC = (id: number, email: string, login: string, isAuth: 
 
 export const stopSubmitAC = (errorMessageSubmit: string) => ({
     type: AUTH.STOP_SUBMIT,
-    payload: {
-        errorMessageSubmit
-    }
+    errorMessageSubmit
 }) as const
 
 
