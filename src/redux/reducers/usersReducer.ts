@@ -7,7 +7,7 @@ const initialState = {
             id: v1(),
             sex: "female",
             name: 'Katya Salimova',
-            photo: 'Katya Salimova',
+            photo: '',
             followed: true,
             status: 'Life is cool',
             email: 'ttt_0a@bk.ru',
@@ -21,7 +21,7 @@ const initialState = {
             id: v1(),
             sex: "male",
             name: 'Ruslan Smirnov',
-            photo: 'Ruslan Smirnov',
+            photo: '',
             followed: true,
             status: 'Ooops!',
             email: 'ruslan@mail.ru',
@@ -34,7 +34,7 @@ const initialState = {
             id: v1(),
             sex: "male",
             name: 'Artem Gurin',
-            photo: 'Artem Gurin',
+            photo: '',
             followed: true,
             status: 'Doctor!',
             email: 'tatatumba@mail.ru',
@@ -47,7 +47,7 @@ const initialState = {
             id: v1(),
             sex: "male",
             name: 'Vasya Bond',
-            photo: 'Vasya Bond',
+            photo: '',
             followed: true,
             status: 'BlaBla!',
             email: 'vasyabond@mail.ru',
@@ -57,7 +57,7 @@ const initialState = {
             id: v1(),
             sex: "male",
             name: 'Maks Rubik',
-            photo: 'Maks Rubik',
+            photo: '',
             followed: true,
             status: 'School!',
             email: 'maksim@gmail.com',
@@ -67,7 +67,7 @@ const initialState = {
             id: v1(),
             sex: "male",
             name: 'Matte Salimov',
-            photo: 'Matte Salimov',
+            photo: '',
             followed: true,
             status: 'Kill you!',
             email: 'matte_salimov@gmail.com',
@@ -77,7 +77,7 @@ const initialState = {
             id: v1(),
             sex: "female",
             name: 'Sophi Loran',
-            photo: 'Sophi Loran',
+            photo: '',
             followed: true,
             status: 'Singer!',
             email: 'loren1995@gmail.com',
@@ -87,7 +87,7 @@ const initialState = {
             id: v1(),
             sex: "female",
             name: 'Marusya Bulkina',
-            photo: 'Marusya Bulkina',
+            photo: '',
             followed: true,
             status: 'Top!',
             email: 'smara@gmail.com',
@@ -97,7 +97,7 @@ const initialState = {
             id: v1(),
             sex: "male",
             name: 'Papa Jons',
-            photo: 'Papa Jons',
+            photo: '',
             followed: true,
             status: 'Pizza forever!',
             email: 'papaJons@gmail.com',
@@ -107,11 +107,37 @@ const initialState = {
             id: v1(),
             sex: "male",
             name: 'Vova Salimov',
-            photo: 'Vova Salimov',
+            photo: '',
             followed: true,
             status: 'Yo!',
             email: 'vovan@gmail.com',
             messages: []
+        },
+        {
+            id: v1(),
+            sex: "female",
+            name: 'Stasya Lis',
+            photo: '',
+            followed: false,
+            status: 'Mom!',
+            email: 'lisa@gmail.com',
+            messages: [
+                {id: v1(), message: 'Hello!'},
+                {id: v1(), message: 'You are crazy!'},
+            ]
+        },
+        {
+            id: v1(),
+            sex: "female",
+            name: 'Stas Lis',
+            photo: '',
+            followed: false,
+            status: 'Mom!',
+            email: 'StasSOS@gmail.com',
+            messages: [
+                {id: v1(), message: 'Bye!'},
+                {id: v1(), message: 'English!'},
+            ]
         },
     ] as FriendType[],
     foundFriends: [] as FriendType[],
@@ -139,6 +165,14 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
                   : f
                 )
             }
+        case USERS.FOLLOW_OR_UNFOLLOW:
+            return {
+                ...state,
+                friends: state.friends.map(f => f.id === action.userId
+                  ? {...f, followed: action.follow}
+                  : f
+                )
+            }
         default:
             return state
     }
@@ -148,8 +182,15 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
 //ACTION CREATORS
 export const setUsersAC = (friends: FriendType[]) => ({type: USERS.SET_USERS, friends}) as const
 
-export const addMessageAC = (userId: string, newMessage: string) => ({
-    type: USERS.ADD_USERS_MESSAGE, userId, newMessage
+export const addMessageAC = (userId: string, newMessage: string) => {
+    console.log(userId, newMessage)
+    return ({
+        type: USERS.ADD_USERS_MESSAGE, userId, newMessage
+    }) as const
+}
+
+export const followOrUnfollowAC = (userId: string, follow: boolean) => ({
+    type: USERS.FOLLOW_OR_UNFOLLOW, userId, follow
 }) as const
 
 
@@ -157,6 +198,7 @@ export const addMessageAC = (userId: string, newMessage: string) => ({
 export type UsersActionType =
   | ReturnType<typeof setUsersAC>
   | ReturnType<typeof addMessageAC>
+  | ReturnType<typeof followOrUnfollowAC>
 
 type InitialStateType = typeof initialState
 

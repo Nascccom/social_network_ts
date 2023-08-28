@@ -1,0 +1,25 @@
+.friendsPage {
+    background-color: #eee1e1;
+    padding: 20px;
+}
+
+.titles {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.titlesGroup {
+    max-width: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between
+}
+
+.titlesGroup a {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 19px;
+    font-weight: 400;
+    text-decoration: none;
+}

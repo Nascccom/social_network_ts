@@ -1,6 +1,6 @@
 import style from "./UserAvatar.module.css";
-import maleFriend from "../../img/maleFriend.png";
-import femaleFriend from "../../img/femaleFriend.png";
+import maleFriend from "../../img/photoFriend/maleFriend.png";
+import femaleFriend from "../../img/photoFriend/femaleFriend.png";
 import {FC} from "react";
 
 export const UserAvatar: FC<PropsType> = ({
@@ -22,8 +22,7 @@ export const UserAvatar: FC<PropsType> = ({
 
     return (
       <div className={`${styles} ${style.avatar}`}>
-          <img src={src}
-               alt={alt}/>
+          <img src={src} alt={alt}/>
       </div>
     );
 };
