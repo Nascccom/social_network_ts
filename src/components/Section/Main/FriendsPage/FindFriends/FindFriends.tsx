@@ -5,13 +5,15 @@ import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {
     followingUserTC,
     FriendType,
-    getUsersTC,
+    getUsersTC, showMoreAC,
     unfollowingUserTC
 } from "../../../../../redux/reducers/usersReducer.ts";
-import {useEffect} from "react";
+import {memo, useEffect} from "react";
 import {Preloader} from "../../../../../common/Preloader/Preloader.tsx";
+import {Pagination} from "./Pagination/Pagination.tsx";
+import {ShowMore} from "../../../../../common/ShowMore/ShowMore.tsx";
 
-export const FindFriends = () => {
+export const FindFriends = memo(() => {
     const dispatch = useAppDispatch()
 
     const foundUsers = useAppSelector<FriendType[]>(state => state.usersData.foundFriends)
@@ -33,6 +35,9 @@ export const FindFriends = () => {
         }
     }
 
+    const loadMoreUsers = () => {
+        dispatch(showMoreAC())
+    }
 
     const mappedUsers = foundUsers.map(f => {
         return <FriendCard key={f.id}
@@ -51,6 +56,10 @@ export const FindFriends = () => {
       ? <Preloader/>
       : <div className={style.findFriends}>
           {mappedUsers}
+          <ShowMore onLoadMore={loadMoreUsers}/>
+          <Pagination currentPage={currentPage}
+                      totalCountUsers={totalCountUsers}
+                      pageSize={pageSize}/>
       </div>
-};
+});
 

@@ -213,6 +213,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
                   : f
                 )
             }
+        case USERS.SHOW_MORE:
+            return {
+                ...state,
+                pageSize: state.pageSize + 10
+            }
         default:
             return state
     }
@@ -252,6 +257,7 @@ export const followingUserAC = (userId: string) => ({type: USERS.FOLLOW_FRIEND, 
 
 export const unfollowingUserAC = (userId: string) => ({type: USERS.UNFOLLOW_FRIEND, userId}) as const
 
+export const showMoreAC = () => ({type: USERS.SHOW_MORE}) as const
 
 
 //THUNK CREATORS
@@ -315,6 +321,7 @@ export type UsersActionType =
   | ReturnType<typeof toggleIsFollowingInProgressAC>
   | ReturnType<typeof followingUserAC>
   | ReturnType<typeof unfollowingUserAC>
+  | ReturnType<typeof showMoreAC>
 
 type InitialStateType = typeof initialState
 
