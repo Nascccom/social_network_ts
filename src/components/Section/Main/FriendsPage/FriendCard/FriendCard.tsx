@@ -21,7 +21,7 @@ export const FriendCard: FC<PropsType> = ({
     return (
       <div className={style.friendCard}>
 
-          <NavLink to={'profile/' + id} className={style.info}>
+          <NavLink to={`/profile/${id}`} className={style.info}>
               <img src={photo ? photo : catFriend} alt={name}/>
               <span>{name}</span>
           </NavLink>

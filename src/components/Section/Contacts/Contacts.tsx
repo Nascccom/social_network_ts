@@ -7,8 +7,7 @@ import {ContactsElement} from "./ContactsElement/ContactsElement.tsx";
 
 
 export const Contacts = () => {
-    const friendContacts = useAppSelector<FriendType[]>(
-      state => state.usersData.users)
+    const friendContacts = useAppSelector<FriendType[]>(state => state.usersData.users)
 
     const [filterValue, setFilterValue] = useState('')
 

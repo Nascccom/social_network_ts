@@ -10,7 +10,7 @@ export const DialogsPage = () => {
     const [friendId, setFriendId] = useState<string>('')
 
     const friendContacts = useAppSelector<FriendType[]>(
-      state => state.usersData.friends)
+      state => state.usersData.users)
 
     const filteredFriends = friendContacts.filter(f => f.followed)
 

@@ -5,19 +5,25 @@ import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {UserAvatar} from "../../../../../common/UserAvatar/UserAvatar.tsx";
 import {useEffect} from "react";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
-import {getUserProfileTC} from "../../../../../redux/reducers/profileReducer.ts";
+import {getStatusTC, getUserProfileTC} from "../../../../../redux/reducers/profileReducer.ts";
+import {useParams} from "react-router-dom";
 
 export const ProfileInfo = () => {
+    const dispatch = useAppDispatch()
+
     const infoProfile = useAppSelector(state => state.profileData.profile)
     const authId = useAppSelector(state => state.authData.userId)
 
-    const dispatch = useAppDispatch()
+    const params = useParams<"*">()
+    let id: number | null = Number(params["*"])
+    if (params["*"] === "") {
+        id = authId
+    }
 
     useEffect(() => {
-        if (authId) {
-            dispatch(getUserProfileTC(authId))
-        }
-    }, [dispatch, authId])
+        dispatch(getUserProfileTC(Number(id)))
+        dispatch(getStatusTC(Number(id)))
+    }, [dispatch, id])
 
     return (
       <div className={style.profileInfo}>

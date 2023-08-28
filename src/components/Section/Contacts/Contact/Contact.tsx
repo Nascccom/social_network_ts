@@ -24,8 +24,7 @@ export const Contact: FC<PropsType> = ({
 
           <div className={style.contactInfo}>
               <div className={style.name}>
-                  <NavLink to={`/dialogs/${id}`}
-                           onClick={onClickContactHandler}>
+                  <NavLink to={`/dialogs/${id}`} onClick={onClickContactHandler}>
                       {name}
                   </NavLink>
               </div>

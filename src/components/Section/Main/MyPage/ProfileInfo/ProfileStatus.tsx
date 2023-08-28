@@ -61,7 +61,7 @@ export const ProfileStatus = () => {
                        autoFocus/>
                 :
                 <span onClick={onClickHandler}>
-                    {status.length > 15 ? `${status.slice(0, 15)}...` : status}
+                    {status && status.length > 15 ? `${status.slice(0, 15)}...` : '...'}
                 </span>
           }
       </div>

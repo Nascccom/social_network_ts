@@ -4,6 +4,7 @@ import {MyFriends} from "./MyFriends/MyFriends.tsx";
 import {TitleWithUnderLine} from "../../../../common/TitleWithUnderLine/TitleWithUnderLine.tsx";
 import {FindFriends} from "./FindFriends/FindFriends.tsx";
 import {useState} from "react";
+import {Error} from "../../../Error.tsx";
 
 export const FriendsPage = () => {
     const [filterFriend, setFilterFriend] = useState(true)
@@ -15,13 +16,13 @@ export const FriendsPage = () => {
               <TitleWithUnderLine title={'Friends'} styles={style.title}/>
 
               <div className={style.titlesGroup}>
-                  <NavLink to={'my'} onClick={() => setFilterFriend(true)}>
+                  <NavLink to='my' onClick={() => setFilterFriend(true)}>
                       <TitleWithUnderLine title={'Друзья'}/>
                   </NavLink>
-                  <NavLink to={'requests'} onClick={() => setFilterFriend(false)}>
+                  <NavLink to='requests' onClick={() => setFilterFriend(false)}>
                       <TitleWithUnderLine title={'Запросы'}/>
                   </NavLink>
-                  <NavLink to={'find'}>
+                  <NavLink to='find'>
                       <TitleWithUnderLine title={'Поиск'}/>
                   </NavLink>
               </div>
@@ -29,10 +30,11 @@ export const FriendsPage = () => {
 
 
           <Routes>
-              {/*<Route path={'*'} element={<MyFriends/>}/>*/}
-              <Route path={'/my'} element={<MyFriends filter={filterFriend}/>}/>
-              <Route path={'/requests'} element={<MyFriends filter={filterFriend}/>}/>
-              <Route path={'/find'} element={<FindFriends/>}/>
+              <Route path='*' element={<Error/>}/>
+              <Route path='/' element={<MyFriends filter={filterFriend}/>}/>
+              <Route path='my' element={<MyFriends filter={filterFriend}/>}/>
+              <Route path='requests' element={<MyFriends filter={filterFriend}/>}/>
+              <Route path='find' element={<FindFriends/>}/>
           </Routes>
       </div>
     );

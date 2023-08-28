@@ -7,7 +7,7 @@ import {UserAvatar} from "../../../../../../common/UserAvatar/UserAvatar.tsx";
 
 export const Dialog: FC<PropsType> = ({friendId}) => {
     const friend = useAppSelector<FriendType | undefined>(
-      state => state.usersData.friends.find(f => f.id === friendId))
+      state => state.usersData.users.find(f => f.id === friendId))
 
     if (!friend) {
         return (
