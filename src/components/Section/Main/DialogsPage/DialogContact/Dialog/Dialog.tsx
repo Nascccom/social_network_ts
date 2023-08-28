@@ -1,17 +1,20 @@
 import style from "./Dialog.module.css";
 import {Message} from "./Message/Message.tsx";
-import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
-import {FriendType} from "../../../../../redux/reducers/usersReducer.ts";
+import {useAppSelector} from "../../../../../../hooks/useAppSelector.ts";
+import {FriendType} from "../../../../../../redux/reducers/usersReducer.ts";
 import {FC} from "react";
-import {UserAvatar} from "../../../../../common/UserAvatar/UserAvatar.tsx";
+import {UserAvatar} from "../../../../../../common/UserAvatar/UserAvatar.tsx";
 
 export const Dialog: FC<PropsType> = ({friendId}) => {
     const friend = useAppSelector<FriendType | undefined>(
       state => state.usersData.friends.find(f => f.id === friendId))
 
     if (!friend) {
-        return <div>Do you want to see the correspondence?
-            Choose an interlocutor!</div>
+        return (
+          <div className={style.notice}>
+              <p>Do you want to see the correspondence?</p>
+              <p>Choose an interlocutor!</p>
+          </div>)
     }
 
     const mappedMessages = friend.messages.map(mes => (

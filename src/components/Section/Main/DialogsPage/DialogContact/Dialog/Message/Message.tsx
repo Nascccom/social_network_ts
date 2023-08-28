@@ -1,7 +1,7 @@
 import style from "./Message.module.css";
-import femaleFriend from "./../../../../../../img/femaleFriend.png"
+import femaleFriend from "../../../../../../../img/photoFriend/femaleFriend.png"
 import {FC} from "react";
-import {useAppSelector} from "../../../../../../hooks/useAppSelector.ts";
+import {useAppSelector} from "../../../../../../../hooks/useAppSelector.ts";
 
 export const Message: FC<PropsType> = ({text}) => {
     const profileUserAvatar = useAppSelector(

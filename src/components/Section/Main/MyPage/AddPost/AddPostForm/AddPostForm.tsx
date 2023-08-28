@@ -17,8 +17,7 @@ export const AddPostForm: FC<PropsType> = ({addPost}) => {
 
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)}
-            className={style.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
           <textarea {...register('newPost', {required: true})}
                     placeholder={'I wait...'}>
           </textarea>
