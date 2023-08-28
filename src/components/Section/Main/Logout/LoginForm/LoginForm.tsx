@@ -7,7 +7,7 @@ import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 
 export const LoginForm = () => {
     const dispatch = useAppDispatch()
-    const errorMessage = useAppSelector(state => state.authData.errorMessageSubmit)
+    const errorMessage = useAppSelector<string>(state => state.authData.errorMessageSubmit)
 
     const {
         register,
@@ -21,7 +21,7 @@ export const LoginForm = () => {
         }
     })
 
-    const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+    const onSubmit: SubmitHandler<IFormInputs> = (data) => {
         dispatch(loginTC(data.email, data.password, data.rememberMe))
     };
 

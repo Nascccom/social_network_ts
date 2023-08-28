@@ -7,7 +7,6 @@ const initialState = {
     email: null as null | string,
     isAuth: false,
     rememberMe: false,
-    isSubmitted: false,
     errorMessageSubmit: ''
 }
 
@@ -17,6 +16,11 @@ export const authReducer = (state: InitialStateType = initialState, action: Auth
             return {
                 ...state,
                 ...action.payload,
+            }
+        case AUTH.STOP_SUBMIT:
+            return {
+                ...state,
+                errorMessageSubmit: action.payload.errorMessageSubmit
             }
         default:
             return state
@@ -35,10 +39,9 @@ export const setAuthDataAC = (id: number, email: string, login: string, isAuth: 
     }
 }) as const
 
-export const stopSubmitAC = (isSubmitted: boolean, errorMessageSubmit: string) => ({
+export const stopSubmitAC = (errorMessageSubmit: string) => ({
     type: AUTH.STOP_SUBMIT,
     payload: {
-        isSubmitted,
         errorMessageSubmit
     }
 }) as const
@@ -69,9 +72,9 @@ export const loginTC = (email: string, password: string, rememberMe: boolean): T
         const response = await authAPI.loginAuth(email, password, rememberMe)
         if (response.resultCode === 0) {
             dispatch(getAuthMeTC())
-            dispatch(stopSubmitAC(false, ''))
+            dispatch(stopSubmitAC(''))
         } else {
-            dispatch(stopSubmitAC(true, 'You entered an incorrect email or password'))
+            dispatch(stopSubmitAC(response.messages[0]))
         }
     }
 }

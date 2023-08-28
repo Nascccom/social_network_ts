@@ -14,8 +14,8 @@ export const authAPI = {
         return res.data;
     },
     loginAuth: async (email: string, password: string, rememberMe: boolean = false) => {
-        const res = await instance
-          .post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe})
+        const res =
+          await instance.post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe})
         return res.data;
     },
     logoutAuth: async () => {
