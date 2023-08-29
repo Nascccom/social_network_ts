@@ -3,8 +3,13 @@ import {ThunkDispatch, ThunkAction} from "redux-thunk"
 import {ProfileActionType} from "./reducers/profileReducer.ts";
 import {AuthActionTypes} from "./reducers/authReducer.ts";
 import {UsersActionType} from "./reducers/usersReducer.ts";
+import {GroupsActionType} from "./reducers/groupsReducer.ts";
 
-type ActionTypeForApp = ProfileActionType | AuthActionTypes | UsersActionType
+type ActionTypeForApp =
+  | ProfileActionType
+  | AuthActionTypes
+  | UsersActionType
+  | GroupsActionType
 
 export type ThunkActionType = ThunkAction<void, RootState, unknown, ActionTypeForApp>
 export type ThunkDispatchType = ThunkDispatch<RootState, unknown, ActionTypeForApp>
@@ -36,5 +41,9 @@ export enum USERS {
 export enum AUTH {
     SET_AUTH_DATA = "SET-AUTH-DATA",
     STOP_SUBMIT = "STOP-SUBMIT",
-    TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING",
+}
+
+//GROUP
+export enum GROUP {
+    UNFOLLOW_GROUP = 'UNFOLLOW-GROUP'
 }
