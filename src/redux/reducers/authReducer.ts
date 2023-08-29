@@ -2,7 +2,7 @@ import {AUTH, ThunkActionType, ThunkDispatchType} from "../types.ts";
 import {authAPI} from "../../api/api.ts";
 
 const initialState = {
-    userId: null as null | number,
+    userId: 0 as number,
     login: null as null | string,
     email: null as null | string,
     isAuth: false,

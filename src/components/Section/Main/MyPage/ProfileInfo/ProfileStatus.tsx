@@ -3,6 +3,7 @@ import style from "./ProfileStatus.module.css"
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {getStatusTC, updateStatusTC} from "../../../../../redux/reducers/profileReducer.ts";
+import {useParams} from "react-router-dom";
 
 export const ProfileStatus = memo(() => {
     const authId = useAppSelector(state => state.authData.userId)
@@ -10,18 +11,23 @@ export const ProfileStatus = memo(() => {
     const profileStatus = useAppSelector(status => status.profileData.status)
     const dispatch = useAppDispatch()
 
-    const [status, setStatus] = useState(profileStatus)
+    const [status, setStatus] = useState<string>(profileStatus)
     const [editMode, setEditMode] = useState(false)
 
+    const params = useParams<"*">()
+    let id: number  = Number(params["*"])
+    if (params["*"] === "") {
+        id = authId
+    }
+
+
     useEffect(() => {
-        if (authId) {
-            dispatch(getStatusTC(authId))
-        }
-    }, [dispatch, authId])
+        dispatch(getStatusTC(id))
+    }, [dispatch, id])
 
     const updateStatus = (): void => {
         if (!status) {
-            dispatch(updateStatusTC("Set your status"))
+            dispatch(updateStatusTC("..."))
             setEditMode(!editMode)
         } else {
             dispatch(updateStatusTC(status))
@@ -35,7 +41,8 @@ export const ProfileStatus = memo(() => {
 
     const onClickHandler = () => {
         if (authId === profileId) {
-            setEditMode(true)
+            dispatch(getStatusTC(id))
+            setEditMode(!editMode)
         }
     }
 
@@ -49,19 +56,20 @@ export const ProfileStatus = memo(() => {
         updateStatus()
     }
 
+    console.log(profileStatus, status, id)
     return (
       <div className={style.profileStatus}>
           {
               editMode
                 ?
-                <input value={status}
+                <input value={!status ? '...' : status}
                        onBlur={onBlurStatusHandler}
                        onChange={onChangeStatusHandler}
                        onKeyDown={onKeyDownHandler}
                        autoFocus/>
                 :
                 <span onClick={onClickHandler}>
-                    {status && status.length > 15 ? `${status.slice(0, 15)}...` : '...'}
+                    {status.length > 15 ? `${status.slice(0, 15)}...`: status }
                 </span>
           }
       </div>

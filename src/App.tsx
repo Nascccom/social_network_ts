@@ -3,13 +3,13 @@ import {Header} from "./components/Header/Header.tsx";
 import {Nav} from "./components/Section/Nav/Nav.tsx";
 import {Main} from "./components/Section/Main/Main.tsx";
 import {Contacts} from "./components/Section/Contacts/Contacts.tsx";
-import {useEffect, useState} from "react";
+import {memo, useEffect, useState} from "react";
 import {getAuthMeTC} from "./redux/reducers/authReducer.ts";
 import {useAppDispatch} from "./hooks/useAppDispatch.ts";
 import {Logout} from "./components/Section/Main/Logout/Logout.tsx";
 
 
-export const App = () => {
+export const App = memo(() => {
 
     const dispatch = useAppDispatch()
 
@@ -35,7 +35,7 @@ export const App = () => {
           {section === "sectionLogout" && <Logout changePageLayout={changePageLayout}/>}
       </div>
     )
-}
+})
 
 export type SectionCSSType =
   | "sectionAll"

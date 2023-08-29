@@ -43,7 +43,7 @@ const initialState = {
             isDislike: false,
         } as PostType,
     ],
-    status: 'Set your status' as string
+    status: '...' as string
 }
 
 export const profileReducer = (state: InitialStateType = initialState, action: ProfileActionType): InitialStateType => {
@@ -73,7 +73,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
         case PROFILE.SET_STATUS:
             return {...state, status: action.status}
         case PROFILE.CLICK_LIKE_OR_DISLIKE:
-            if (action.name === 'like' ) {
+            if (action.name === 'like') {
                 return {
                     ...state,
                     posts: state.posts.map(post => post.id === action.id
@@ -126,8 +126,13 @@ export const getUserProfileTC = (userId: number): ThunkActionType => {
 
 export const getStatusTC = (userId: number): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
-        const response = await profileAPI.getStatus(userId)
-        dispatch(setStatusAC(response))
+        const status = await profileAPI.getStatus(userId)
+
+        if (status) {
+            dispatch(setStatusAC(status))
+        } else {
+            dispatch(setStatusAC("Set status"))
+        }
     }
 }
 

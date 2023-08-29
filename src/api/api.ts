@@ -5,7 +5,6 @@ export const instance = axios.create({
     withCredentials: true,
     headers: {
         'API-KEY': 'ebfb5f07-e710-4065-9ddd-9255b91b910e',
-        "content-type": "multipart/form-data"
     }
 });
 
@@ -45,7 +44,11 @@ export const profileAPI = {
     updatePhotoProfile: async (newPhoto: any) => {
         const newFormData = new FormData()
         newFormData.append('photo', newPhoto)
-        const res = await instance.put<ResponseType<PhotosType>>('profile/photo', newFormData)
+        const res = await instance.put<ResponseType<PhotosType>>('profile/photo', newFormData, {
+            headers: {
+                "content-type": "multipart/form-data"
+            }
+        })
         return res.data
     }
 }
