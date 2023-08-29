@@ -1,0 +1,49 @@
+.footer:before {
+    background: radial-gradient(circle, rgba(110, 8, 205, 1) 0%, rgba(135, 60, 196, 1) 45%, rgba(193, 177, 208, 1) 100%);
+    content: "";
+    display: block;
+    height: 4px;
+    text-align: center;
+    width: 100%;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 0 15px;
+    width: 100%;
+}
+
+
+/*Column Button*/
+
+.footerColumnButton li {
+    border-radius: 5px;
+    background-color: #af75e7;
+    text-align: center;
+    padding: 5px 20px;
+    transition: background-color .3s ease;
+}
+
+.footerColumnButton li:hover {
+    background-color: #bac2c7;
+}
+
+.footerColumnButton a {
+    font-size: inherit;
+    font-weight: bold;
+    color: inherit;
+}
+
+/*Column*/
+
+.column img {
+    width: 100px;
+}
+
+.blockImgAndAdress {
+    display: flex;
+
+}

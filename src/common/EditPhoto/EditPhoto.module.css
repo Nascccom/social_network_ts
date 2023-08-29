@@ -1,0 +1,23 @@
+.editPhoto label {
+    padding: 10px 15px;
+    background-color: #000;
+    border: none;
+    color: #fff;
+    transition: background-color .5s linear;
+}
+
+.editPhoto label:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.editPhoto input {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.editPhoto span{
+    margin-left: 5px;
+}

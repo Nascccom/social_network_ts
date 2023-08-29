@@ -1,7 +1,7 @@
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 h1,
@@ -10,19 +10,38 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
+    margin: 0;
 }
 
 p {
-  margin: 0 0 10px;
+    margin: 0 0 10px;
 }
 
 body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 400;
-  background-color: #F4F2F2;
-  color: #545454;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    background-color: #F4F2F2;
+    color: #545454;
+}
+
+ul {
+    padding: 0;
+    margin: 0
+}
+
+li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
 }

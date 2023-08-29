@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {profileAPI, UserProfileType} from "../../api/api.ts";
+import {PhotosType, profileAPI, UpdateInfoProfileType, UserProfileType} from "../../api/api.ts";
 import {PROFILE, ThunkActionType, ThunkDispatchType} from "../types.ts";
 
 
@@ -98,6 +98,21 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
                       } : post)
                 }
             }
+        case PROFILE.SET_NEW_PHOTO:
+            if (state.profile !== null) {
+                return {
+                    ...state, profile: {
+                        ...state.profile,
+                        photos: action.photo
+                    }
+                }
+            }
+            return state
+        case PROFILE.SET_PROFILE_INFO:
+            if (state.profile !== null) {
+                return {...state, profile: {...state.profile, ...action.info}}
+            }
+            return state
         default:
             return state
     }
@@ -115,6 +130,12 @@ export const setStatusAC = (status: string) => ({type: PROFILE.SET_STATUS, statu
 export const clickLikeOrDislikeAC = (id: string, name: string) => ({
     type: PROFILE.CLICK_LIKE_OR_DISLIKE, id, name
 }) as const
+
+export const setNewPhotoAC = (photo: PhotosType) => ({type: PROFILE.SET_NEW_PHOTO, photo}) as const
+
+export const setProfileInfoAC = (info: UpdateInfoProfileType) => ({type: PROFILE.SET_PROFILE_INFO, info}) as const
+
+
 
 //Thunk Creator
 export const getUserProfileTC = (userId: number): ThunkActionType => {
@@ -143,6 +164,26 @@ export const updateStatusTC = (status: string): ThunkActionType => {
     }
 }
 
+export const updatePhotoTC = (photo: File): ThunkActionType => {
+    return async (dispatch: ThunkDispatchType) => {
+        const response = await profileAPI.updatePhotoProfile(photo)
+
+        if (response.resultCode === 0) {
+            dispatch(setNewPhotoAC(response.data))
+        }
+    }
+}
+
+export const updateProfileInfoTC = (info: UpdateInfoProfileType) => {
+    return async (dispatch: ThunkDispatchType) => {
+        const response = await profileAPI.updateProfileInfo(info)
+
+        if (response.resultCode === 0) {
+            dispatch(setProfileInfoAC(info))
+        }
+    }
+}
+
 //TYPES
 export type ProfileActionType =
   | ReturnType<typeof addPostAC>
@@ -150,6 +191,8 @@ export type ProfileActionType =
   | ReturnType<typeof setProfileAC>
   | ReturnType<typeof setStatusAC>
   | ReturnType<typeof clickLikeOrDislikeAC>
+  | ReturnType<typeof setNewPhotoAC>
+  | ReturnType<typeof setProfileInfoAC>
 
 export type InitialStateType = typeof initialState
 

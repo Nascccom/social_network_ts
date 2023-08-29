@@ -4,9 +4,9 @@ import {useAppSelector} from "../../hooks/useAppSelector.ts";
 import userAvatar from "../../img/userAvatar.png"
 import {UserAvatar} from "../../common/UserAvatar/UserAvatar.tsx";
 import {SectionCSSType} from "../../App.tsx";
+import EditPhoto from "../../common/EditPhoto/EditPhoto.tsx";
 
 export const Header: FC<PropsType> = memo(({section}) => {
-    // const idAuth = useAppSelector(state => state.authReducer.userId)
     const infoProfile = useAppSelector(state => state.profileData.profile)
 
     if (section === 'sectionLogout') {
@@ -22,6 +22,7 @@ export const Header: FC<PropsType> = memo(({section}) => {
                                   photo={infoProfile?.photos.large ? infoProfile?.photos.large : userAvatar}
                                   styles={style.userAvatar}/>
                   </a>
+                  <EditPhoto/>
               </div>
           </div>
       </header>

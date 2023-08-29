@@ -41,7 +41,7 @@ export const profileAPI = {
         const res = await instance.put<ResponseType>('/profile', info)
         return res.data
     },
-    updatePhotoProfile: async (newPhoto: any) => {
+    updatePhotoProfile: async (newPhoto: File) => {
         const newFormData = new FormData()
         newFormData.append('photo', newPhoto)
         const res = await instance.put<ResponseType<PhotosType>>('profile/photo', newFormData, {
@@ -123,7 +123,6 @@ export type UserItemType = {
     photos: PhotosType
     status: null | string
 }
-
 
 export type UpdateInfoProfileType = {
     userId: number

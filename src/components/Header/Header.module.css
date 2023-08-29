@@ -8,15 +8,20 @@
 
 .container {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     height: 100%;
     margin: 0 auto;
     max-width: 1200px;
 }
 
 .headerInner {
-    align-items: center;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: start;
     margin-bottom: 50px
+}
+
+.userAvatar {
+    margin-bottom: 10px;
 }

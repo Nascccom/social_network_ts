@@ -7,6 +7,7 @@ import {memo, useEffect, useState} from "react";
 import {getAuthMeTC} from "./redux/reducers/authReducer.ts";
 import {useAppDispatch} from "./hooks/useAppDispatch.ts";
 import {Logout} from "./components/Section/Main/Logout/Logout.tsx";
+import {Footer} from "./components/Footer/Footer.tsx";
 
 
 export const App = memo(() => {
@@ -31,7 +32,7 @@ export const App = memo(() => {
               <Main section={section} changePageLayout={changePageLayout}/>
               {section === "sectionAll" && <Contacts/>}
           </div>
-          {/*<Footer section={section}/>*/}
+          <Footer section={section}/>
           {section === "sectionLogout" && <Logout changePageLayout={changePageLayout}/>}
       </div>
     )
