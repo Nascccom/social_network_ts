@@ -1,9 +1,9 @@
 import style from "./Message.module.css";
 import femaleFriend from "../../../../../../../img/photoFriend/femaleFriend.png"
-import {FC} from "react";
+import {FC, memo} from "react";
 import {useAppSelector} from "../../../../../../../hooks/useAppSelector.ts";
 
-export const Message: FC<PropsType> = ({text}) => {
+export const Message: FC<PropsType> = memo(({text}) => {
     const profileUserAvatar = useAppSelector(
       state => state.profileData.profile?.photos.large)
 
@@ -19,7 +19,7 @@ export const Message: FC<PropsType> = ({text}) => {
           </div>
       </div>
     );
-};
+});
 
 type PropsType = {
     text: string

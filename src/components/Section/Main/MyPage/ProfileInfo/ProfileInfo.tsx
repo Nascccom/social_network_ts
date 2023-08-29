@@ -3,12 +3,12 @@ import {ProfileStatus} from "./ProfileStatus.tsx";
 import userAvatar from "../../../../../img/userAvatar.png"
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {UserAvatar} from "../../../../../common/UserAvatar/UserAvatar.tsx";
-import {useEffect} from "react";
+import {memo, useEffect} from "react";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import {getStatusTC, getUserProfileTC} from "../../../../../redux/reducers/profileReducer.ts";
 import {useParams} from "react-router-dom";
 
-export const ProfileInfo = () => {
+export const ProfileInfo = memo(() => {
     const dispatch = useAppDispatch()
 
     const infoProfile = useAppSelector(state => state.profileData.profile)
@@ -56,4 +56,4 @@ export const ProfileInfo = () => {
           </div>
       </div>
     );
-};
+});

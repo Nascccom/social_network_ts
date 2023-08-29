@@ -1,9 +1,9 @@
 import style from "./Contact.module.css";
-import {FC} from "react";
+import {FC, memo} from "react";
 import {NavLink} from "react-router-dom";
 import {UserAvatar} from "../../../../common/UserAvatar/UserAvatar.tsx";
 
-export const Contact: FC<PropsType> = ({
+export const Contact: FC<PropsType> = memo(({
                                            id,
                                            sex,
                                            photo,
@@ -34,7 +34,7 @@ export const Contact: FC<PropsType> = ({
           </div>
       </div>
     );
-};
+});
 
 type PropsType = {
     id: string

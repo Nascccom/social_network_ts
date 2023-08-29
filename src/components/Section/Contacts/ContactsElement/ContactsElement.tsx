@@ -1,9 +1,9 @@
 import style from "./ContactsElement.module.css";
 import {Contact} from "../Contact/Contact.tsx";
 import {FriendType} from "../../../../redux/reducers/usersReducer.ts";
-import {FC} from "react";
+import {FC, memo} from "react";
 
-export const ContactsElement: FC<PropsType> = ({
+export const ContactsElement: FC<PropsType> = memo(({
                                                    contactsArray,
                                                    setFriendId
                                                }) => {
@@ -23,7 +23,7 @@ export const ContactsElement: FC<PropsType> = ({
           {mappedFriends}
       </div>
     );
-};
+});
 
 type PropsType = {
     contactsArray: FriendType[]

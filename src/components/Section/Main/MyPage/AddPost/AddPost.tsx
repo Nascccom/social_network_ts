@@ -5,8 +5,9 @@ import userAvatar from "../../../../../img/userAvatar.png";
 import {AddPostForm} from "./AddPostForm/AddPostForm.tsx";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import {addPostAC} from "../../../../../redux/reducers/profileReducer.ts";
+import {memo} from "react";
 
-export const AddPost = () => {
+export const AddPost = memo(() => {
     const profileName = useAppSelector(state => state.profileData.profile?.fullName)
 
     const profileUserAvatar = useAppSelector(
@@ -27,4 +28,4 @@ export const AddPost = () => {
           <AddPostForm addPost={addNewPost}/>
       </div>
     );
-};
+});

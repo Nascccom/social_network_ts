@@ -2,11 +2,11 @@ import style from "./Logout.module.css";
 import logoutImg from "./../../../../img/logout.webp"
 import {LoginForm} from "./LoginForm/LoginForm.tsx";
 import {SectionCSSType} from "../../../../App.tsx";
-import {FC} from "react";
+import {FC, memo} from "react";
 import {useAppSelector} from "../../../../hooks/useAppSelector.ts";
 import {Navigate} from "react-router-dom";
 
-export const Logout: FC<PropsType> = ({changePageLayout}) => {
+export const Logout: FC<PropsType> = memo(({changePageLayout}) => {
     const isAuth = useAppSelector<boolean>(state => state.authData.isAuth)
 
     if (isAuth) {
@@ -33,7 +33,7 @@ export const Logout: FC<PropsType> = ({changePageLayout}) => {
           </div>
       </div>
     );
-};
+});
 
 type PropsType = {
     changePageLayout: (value: SectionCSSType) => void

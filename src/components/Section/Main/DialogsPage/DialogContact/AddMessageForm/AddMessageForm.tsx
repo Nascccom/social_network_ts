@@ -1,11 +1,11 @@
 import style from "./AddMessageForm.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShare} from "@fortawesome/free-solid-svg-icons/faShare";
-import {FC} from "react";
+import {FC, memo} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 
 
-export const AddMessageForm: FC<PropsType> = ({addMessage}) => {
+export const AddMessageForm: FC<PropsType> = memo(({addMessage}) => {
 
     const {
         register,
@@ -29,7 +29,7 @@ export const AddMessageForm: FC<PropsType> = ({addMessage}) => {
           </button>
       </form>
     );
-};
+});
 
 type PropsType = {
     addMessage: (newMessage: string) => void

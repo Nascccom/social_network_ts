@@ -1,0 +1,18 @@
+.photosPage {
+    background-color: #eee1e1;
+    padding: 20px;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.wrapper img {
+    transition: opacity .2s linear;
+    width: 100%;
+    max-width: 100%; /* Максимальная ширина картинки */
+    min-height: 100%; /* Минимальная высота картинки */
+    object-fit: cover; /* Всю, выше указанную, облась заполнить картинкой */
+}

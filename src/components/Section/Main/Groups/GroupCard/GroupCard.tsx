@@ -1,11 +1,11 @@
 import style from "./GroupCard.module.css";
 import {CategoryType, unfollowGroupAC} from "../../../../../redux/reducers/groupsReducer.ts";
-import {FC} from "react";
+import {FC, memo} from "react";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import groupImg from "./../../../../../img/group/groupImg.png"
 import {Button} from "../../../../../common/Button/Button.tsx";
 
-export const GroupCard: FC<PropsType> = ({
+export const GroupCard: FC<PropsType> = memo(({
                                              id,
                                              type,
                                              name,
@@ -35,7 +35,7 @@ export const GroupCard: FC<PropsType> = ({
       </div>
 
     );
-};
+});
 
 type PropsType = {
     id: string

@@ -1,9 +1,9 @@
 import style from "./UserAvatar.module.css";
 import maleFriend from "../../img/photoFriend/maleFriend.png";
 import femaleFriend from "../../img/photoFriend/femaleFriend.png";
-import {FC} from "react";
+import {FC, memo} from "react";
 
-export const UserAvatar: FC<PropsType> = ({
+export const UserAvatar: FC<PropsType> = memo(({
                                               photo,
                                               sex = 'male',
                                               alt,
@@ -25,7 +25,7 @@ export const UserAvatar: FC<PropsType> = ({
           <img src={src} alt={alt}/>
       </div>
     );
-};
+});
 
 type PropsType = {
     photo: string

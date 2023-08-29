@@ -5,8 +5,9 @@ import {faComment, faThumbsDown, faThumbsUp, faXmark} from "@fortawesome/free-so
 import {useAppSelector} from "../../../../../../hooks/useAppSelector.ts";
 import {useAppDispatch} from "../../../../../../hooks/useAppDispatch.ts";
 import {clickLikeOrDislikeAC, deletePostAC} from "../../../../../../redux/reducers/profileReducer.ts";
+import {memo} from "react";
 
-export const Post = (props: PropsType) => {
+export const Post = memo((props: PropsType) => {
     const profileUserAvatar = useAppSelector(
       state => state.profileData.profile?.photos.large)
 
@@ -69,7 +70,7 @@ export const Post = (props: PropsType) => {
           </div>
       </div>
     );
-};
+});
 
 type PropsType = {
     id: string

@@ -9,13 +9,13 @@ import {
     faUserGroup,
 } from "@fortawesome/free-solid-svg-icons"
 import {NavLink} from "react-router-dom";
-import {FC} from "react";
+import {FC, memo} from "react";
 import {TitleWithUnderLine} from "../../../common/TitleWithUnderLine/TitleWithUnderLine.tsx";
 import {SectionCSSType} from "../../../App.tsx";
 import {useAppDispatch} from "../../../hooks/useAppDispatch.ts";
 import {logoutTC} from "../../../redux/reducers/authReducer.ts";
 
-export const Nav: FC<PropsType> = ({section, changePageLayout}) => {
+export const Nav: FC<PropsType> = memo(({section, changePageLayout}) => {
     const dispatch = useAppDispatch()
 
     if (section === "sectionLogout" || section === "sectionError") {
@@ -63,7 +63,7 @@ export const Nav: FC<PropsType> = ({section, changePageLayout}) => {
           </div>
       </div>
     );
-};
+});
 
 type PropsType = {
     section: SectionCSSType

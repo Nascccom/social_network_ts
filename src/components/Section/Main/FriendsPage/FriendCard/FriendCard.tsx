@@ -1,10 +1,10 @@
 import style from "./FriendCard.module.css";
 import {NavLink} from "react-router-dom";
-import {FC} from "react";
+import {FC, memo} from "react";
 import catFriend from "../../../../../img/photoFriend/catFriend.avif"
 import {Button} from "../../../../../common/Button/Button.tsx";
 
-export const FriendCard: FC<PropsType> = ({
+export const FriendCard: FC<PropsType> = memo(({
                                               id,
                                               name,
                                               followed,
@@ -36,7 +36,7 @@ export const FriendCard: FC<PropsType> = ({
           />
       </div>
     );
-};
+});
 
 type PropsType = {
     id: string

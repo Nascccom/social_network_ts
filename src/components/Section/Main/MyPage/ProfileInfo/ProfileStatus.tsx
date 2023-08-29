@@ -1,10 +1,10 @@
-import {ChangeEvent, KeyboardEvent, useEffect, useState} from "react";
+import {ChangeEvent, KeyboardEvent, memo, useEffect, useState} from "react";
 import style from "./ProfileStatus.module.css"
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {getStatusTC, updateStatusTC} from "../../../../../redux/reducers/profileReducer.ts";
 
-export const ProfileStatus = () => {
+export const ProfileStatus = memo(() => {
     const authId = useAppSelector(state => state.authData.userId)
     const profileId = useAppSelector(status => status.profileData.profile?.userId)
     const profileStatus = useAppSelector(status => status.profileData.status)
@@ -66,4 +66,4 @@ export const ProfileStatus = () => {
           }
       </div>
     )
-};
+});

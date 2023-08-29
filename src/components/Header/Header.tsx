@@ -1,11 +1,11 @@
-import {FC} from "react";
+import {FC, memo} from "react";
 import style from './Header.module.css'
 import {useAppSelector} from "../../hooks/useAppSelector.ts";
 import userAvatar from "../../img/userAvatar.png"
 import {UserAvatar} from "../../common/UserAvatar/UserAvatar.tsx";
 import {SectionCSSType} from "../../App.tsx";
 
-export const Header: FC<PropsType> = ({section}) => {
+export const Header: FC<PropsType> = memo(({section}) => {
     // const idAuth = useAppSelector(state => state.authReducer.userId)
     const infoProfile = useAppSelector(state => state.profileData.profile)
 
@@ -26,7 +26,7 @@ export const Header: FC<PropsType> = ({section}) => {
           </div>
       </header>
     );
-};
+});
 
 // TYPES
 type PropsType = {

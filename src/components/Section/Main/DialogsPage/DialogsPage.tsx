@@ -3,10 +3,10 @@ import {TitleWithUnderLine} from "../../../../common/TitleWithUnderLine/TitleWit
 import {ContactsElement} from "../../Contacts/ContactsElement/ContactsElement.tsx";
 import {useAppSelector} from "../../../../hooks/useAppSelector.ts";
 import {FriendType} from "../../../../redux/reducers/usersReducer.ts";
-import {useState} from "react";
+import {memo, useState} from "react";
 import {DialogContact} from "./DialogContact/DialogContact.tsx";
 
-export const DialogsPage = () => {
+export const DialogsPage = memo(() => {
     const [friendId, setFriendId] = useState<string>('')
 
     const friendContacts = useAppSelector<FriendType[]>(
@@ -28,4 +28,4 @@ export const DialogsPage = () => {
           </div>
       </div>
     );
-};
+});

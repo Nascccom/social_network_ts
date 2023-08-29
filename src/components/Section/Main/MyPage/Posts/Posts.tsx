@@ -1,8 +1,9 @@
 import {Post} from "./Post/Post.tsx";
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {PostType} from "../../../../../redux/reducers/profileReducer.ts";
+import {memo} from "react";
 
-export const Posts = () => {
+export const Posts = memo(() => {
     const posts = useAppSelector<PostType[]>(state => state.profileData.posts)
 
     const mappedPosts = posts.map(p => {
@@ -21,4 +22,4 @@ export const Posts = () => {
 
     return <div> {mappedPosts} </div>
 
-};
+});

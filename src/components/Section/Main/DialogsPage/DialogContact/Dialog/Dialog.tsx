@@ -2,10 +2,10 @@ import style from "./Dialog.module.css";
 import {Message} from "./Message/Message.tsx";
 import {useAppSelector} from "../../../../../../hooks/useAppSelector.ts";
 import {FriendType} from "../../../../../../redux/reducers/usersReducer.ts";
-import {FC} from "react";
+import {FC, memo} from "react";
 import {UserAvatar} from "../../../../../../common/UserAvatar/UserAvatar.tsx";
 
-export const Dialog: FC<PropsType> = ({friendId}) => {
+export const Dialog: FC<PropsType> = memo(({friendId}) => {
     const friend = useAppSelector<FriendType | undefined>(
       state => state.usersData.users.find(f => f.id === friendId))
 
@@ -36,7 +36,7 @@ export const Dialog: FC<PropsType> = ({friendId}) => {
           </div>
       </div>
     );
-};
+});
 
 type PropsType = {
     friendId: string

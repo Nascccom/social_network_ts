@@ -1,14 +1,14 @@
-import {FC} from "react";
+import {FC, memo} from "react";
 import styles from "./Pagination.module.css"
 import {setCurrentPageAC} from "../../../../../../redux/reducers/usersReducer.ts";
 import {useAppDispatch} from "../../../../../../hooks/useAppDispatch.ts";
 
-export const Pagination: FC<PropsType> = ({
-                                              currentPage,
-                                              totalCountUsers,
-                                              pageSize,
+export const Pagination: FC<PropsType> = memo(({
+                                                   currentPage,
+                                                   totalCountUsers,
+                                                   pageSize,
 
-                                          }) => {
+                                               }) => {
     const dispatch = useAppDispatch()
 
     const totalPages: number = Math.ceil(totalCountUsers / pageSize);
@@ -72,7 +72,7 @@ export const Pagination: FC<PropsType> = ({
           </ul>
       </div>
     );
-};
+});
 
 type PropsType = {
     currentPage: number

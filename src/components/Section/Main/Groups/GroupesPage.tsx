@@ -4,8 +4,9 @@ import {TitleWithUnderLine} from "../../../../common/TitleWithUnderLine/TitleWit
 import {GroupCard} from "./GroupCard/GroupCard.tsx";
 import {GroupType} from "../../../../redux/reducers/groupsReducer.ts";
 import {ShowMore} from "../../../../common/ShowMore/ShowMore.tsx";
+import {memo} from "react";
 
-export const GroupsPage = () => {
+export const GroupsPage = memo(() => {
     const groupsData = useAppSelector<GroupType[]>(state => state.groupsData)
 
 
@@ -27,5 +28,5 @@ export const GroupsPage = () => {
           <ShowMore onLoadMore={() => {}}/>
       </div>
     );
-};
+});
 

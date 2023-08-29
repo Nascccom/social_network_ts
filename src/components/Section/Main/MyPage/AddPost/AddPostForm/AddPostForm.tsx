@@ -1,8 +1,8 @@
-import {FC} from "react";
+import {FC, memo} from "react";
 import style from "./AddPostForm.module.css";
 import {SubmitHandler, useForm} from "react-hook-form";
 
-export const AddPostForm: FC<PropsType> = ({addPost}) => {
+export const AddPostForm: FC<PropsType> = memo(({addPost}) => {
 
     const {
         register,
@@ -24,7 +24,7 @@ export const AddPostForm: FC<PropsType> = ({addPost}) => {
           <button>Publish</button>
       </form>
     );
-};
+});
 
 type PropsType = {
     addPost: (newPost: string) => void

@@ -3,10 +3,10 @@ import {NavLink, Route, Routes} from "react-router-dom";
 import {MyFriends} from "./MyFriends/MyFriends.tsx";
 import {TitleWithUnderLine} from "../../../../common/TitleWithUnderLine/TitleWithUnderLine.tsx";
 import {FindFriends} from "./FindFriends/FindFriends.tsx";
-import {useState} from "react";
+import {memo, useState} from "react";
 import {Error} from "../../../Error.tsx";
 
-export const FriendsPage = () => {
+export const FriendsPage = memo(() => {
     const [filterFriend, setFilterFriend] = useState(true)
 
 
@@ -38,5 +38,5 @@ export const FriendsPage = () => {
           </Routes>
       </div>
     );
-};
+});
 

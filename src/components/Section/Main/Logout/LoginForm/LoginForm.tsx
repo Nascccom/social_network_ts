@@ -3,9 +3,10 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {loginTC} from "../../../../../redux/reducers/authReducer.ts";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
+import {memo} from "react";
 
 
-export const LoginForm = () => {
+export const LoginForm = memo(() => {
     const dispatch = useAppDispatch()
     const errorMessage = useAppSelector<string>(state => state.authData.errorMessageSubmit)
 
@@ -68,7 +69,7 @@ export const LoginForm = () => {
           </div>
       </form>
     );
-};
+});
 
 interface IFormInputs {
     email: string

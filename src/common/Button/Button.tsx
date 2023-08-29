@@ -1,7 +1,7 @@
 import style from "./Button.module.css"
-import {FC} from "react";
+import {FC, memo} from "react";
 
-export const Button: FC<PropsType> = ({
+export const Button: FC<PropsType> = memo(({
                                           name,
                                           callBack,
                                           styles,
@@ -20,7 +20,7 @@ export const Button: FC<PropsType> = ({
           {name}
       </button>
     );
-};
+});
 
 type PropsType = {
     name: string
