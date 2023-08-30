@@ -142,14 +142,14 @@ const initialState = {
         },
     ] as FriendType[],
     foundFriends: [] as FriendType[],
-    currentPage: 5,
+    currentPage: 1,
     pageSize: 10,
     totalCountUsers: 0,
     isFetching: false,
     isFollowingInProgress: [] as string[]
 }
 
-export const usersReducer = (state: InitialStateType = initialState, action: UsersActionType): InitialStateType => {
+export const usersReducer = (state: InitialUsersStateType = initialState, action: UsersActionType): InitialUsersStateType => {
     switch (action.type) {
         case USERS.FOLLOW_OR_UNFOLLOW_USERS:
             return {
@@ -160,7 +160,12 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
                 )
             }
         case USERS.SET_USERS:
-            return {...state, foundFriends: action.users}
+            return {
+                ...state, foundFriends: [
+                    ...state.foundFriends,
+                    ...action.users
+                ]
+            }
         case USERS.ADD_USERS_MESSAGE:
             return {
                 ...state,
@@ -323,7 +328,7 @@ export type UsersActionType =
   | ReturnType<typeof unfollowingUserAC>
   | ReturnType<typeof showMoreAC>
 
-type InitialStateType = typeof initialState
+export type InitialUsersStateType = typeof initialState
 
 export type FriendType = {
     id: string
