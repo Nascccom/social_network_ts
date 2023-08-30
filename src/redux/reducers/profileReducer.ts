@@ -46,7 +46,7 @@ const initialState = {
     status: '...' as string
 }
 
-export const profileReducer = (state: InitialStateType = initialState, action: ProfileActionType): InitialStateType => {
+export const profileReducer = (state: InitialProfileStateType  = initialState, action: ProfileActionType): InitialProfileStateType  => {
     switch (action.type) {
         case PROFILE.ADD_POST:
             return {
@@ -194,7 +194,7 @@ export type ProfileActionType =
   | ReturnType<typeof setNewPhotoAC>
   | ReturnType<typeof setProfileInfoAC>
 
-export type InitialStateType = typeof initialState
+export type InitialProfileStateType = typeof initialState
 
 export type PostType = {
     id: string

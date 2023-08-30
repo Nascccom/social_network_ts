@@ -10,7 +10,10 @@ const initialState = {
     errorMessageSubmit: '',
 }
 
-export const authReducer = (state: InitialStateType = initialState, action: AuthActionTypes): InitialStateType => {
+export const authReducer = (
+  state: InitialAuthStateType = initialState,
+  action: AuthActionTypes
+): InitialAuthStateType => {
     switch (action.type) {
         case AUTH.SET_AUTH_DATA:
             return {
@@ -83,4 +86,4 @@ export type AuthActionTypes =
   | ReturnType<typeof setAuthDataAC>
   | ReturnType<typeof stopSubmitAC>
 
-export type InitialStateType = typeof initialState
+export type InitialAuthStateType = typeof initialState
