@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {ThunkActionType, ThunkDispatchType, USERS} from "../types.ts";
-import {usersAPI} from "../../api/api.ts";
+import {RESULT_CODES, usersAPI} from "../../api/api.ts";
 
 const initialState = {
     users: [
@@ -295,7 +295,7 @@ export const followingUserTC = (userId: string): ThunkActionType => {
         dispatch(toggleIsFollowingInProgressAC(userId, true))
 
         const response = await usersAPI.followingUser(userId)
-        if (response.resultCode === 0) {
+        if (response.resultCode === RESULT_CODES.SUCCESS) {
             dispatch(followingUserAC(userId))
             dispatch(toggleIsFollowingInProgressAC(userId, false))
         }
@@ -307,7 +307,7 @@ export const unfollowingUserTC = (userId: string): ThunkActionType => {
         dispatch(toggleIsFollowingInProgressAC(userId, true))
 
         const response = await usersAPI.unfollowingUser(userId)
-        if (response.resultCode === 0) {
+        if (response.resultCode === RESULT_CODES.SUCCESS) {
             dispatch(unfollowingUserAC(userId))
             dispatch(toggleIsFollowingInProgressAC(userId, false))
         }

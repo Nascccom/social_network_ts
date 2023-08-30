@@ -1,5 +1,5 @@
 import {AUTH, ThunkActionType, ThunkDispatchType} from "../types.ts";
-import {authAPI} from "../../api/api.ts";
+import {authAPI, RESULT_CODES} from "../../api/api.ts";
 
 const initialState = {
     userId: 0 as number,
@@ -52,7 +52,7 @@ export const stopSubmitAC = (errorMessageSubmit: string) => ({
 export const getAuthMeTC = (): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
         const response = await authAPI.getAuthMe()
-        if (response.resultCode === 0) {
+        if (response.resultCode === RESULT_CODES.SUCCESS) {
             const {id, email, login} = response.data
             dispatch(setAuthDataAC(id, email, login, true))
         }
@@ -62,7 +62,7 @@ export const getAuthMeTC = (): ThunkActionType => {
 export const logoutTC = (): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
         const response = await authAPI.logoutAuth()
-        if (response.resultCode === 0) {
+        if (response.resultCode === RESULT_CODES.SUCCESS) {
             dispatch(setAuthDataAC(0, '', '', false))
         }
     }
@@ -71,7 +71,7 @@ export const logoutTC = (): ThunkActionType => {
 export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
         const response = await authAPI.loginAuth(email, password, rememberMe)
-        if (response.resultCode === 0) {
+        if (response.resultCode === RESULT_CODES.SUCCESS) {
             dispatch(getAuthMeTC())
             dispatch(stopSubmitAC(''))
         } else {

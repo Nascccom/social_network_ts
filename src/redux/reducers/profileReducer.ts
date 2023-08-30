@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {PhotosType, profileAPI, UpdateInfoProfileType, UserProfileType} from "../../api/api.ts";
+import {PhotosType, profileAPI, RESULT_CODES, UpdateInfoProfileType, UserProfileType} from "../../api/api.ts";
 import {PROFILE, ThunkActionType, ThunkDispatchType} from "../types.ts";
 
 
@@ -168,7 +168,7 @@ export const updatePhotoTC = (photo: File): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
         const response = await profileAPI.updatePhotoProfile(photo)
 
-        if (response.resultCode === 0) {
+        if (response.resultCode === RESULT_CODES.SUCCESS) {
             dispatch(setNewPhotoAC(response.data))
         }
     }
@@ -178,7 +178,7 @@ export const updateProfileInfoTC = (info: UpdateInfoProfileType) => {
     return async (dispatch: ThunkDispatchType) => {
         const response = await profileAPI.updateProfileInfo(info)
 
-        if (response.resultCode === 0) {
+        if (response.resultCode === RESULT_CODES.SUCCESS) {
             dispatch(setProfileInfoAC(info))
         }
     }
