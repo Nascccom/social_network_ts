@@ -4,8 +4,9 @@ import {FriendType} from "../../../../redux/reducers/usersReducer.ts";
 import {FC, memo} from "react";
 
 export const ContactsElement: FC<PropsType> = memo(({
-                                                   contactsArray,
-                                               }) => {
+                                                        contactsArray,
+                                                        setFriendId
+                                                    }) => {
 
     const mappedFriends = contactsArray.map(f => (
       <Contact key={f.id}
@@ -14,6 +15,7 @@ export const ContactsElement: FC<PropsType> = memo(({
                photo={f.photo}
                name={f.name}
                email={f.email}
+               setFriendId={setFriendId}
       />))
 
     return (
@@ -25,5 +27,6 @@ export const ContactsElement: FC<PropsType> = memo(({
 
 type PropsType = {
     contactsArray: FriendType[]
+    setFriendId?: (friendId: string) => void
 }
 

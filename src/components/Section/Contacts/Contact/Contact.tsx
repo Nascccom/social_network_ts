@@ -4,12 +4,21 @@ import {NavLink} from "react-router-dom";
 import {UserAvatar} from "../../../../common/UserAvatar/UserAvatar.tsx";
 
 export const Contact: FC<PropsType> = memo(({
-                                           id,
-                                           sex,
-                                           photo,
-                                           name,
-                                           email,
-                                       }) => {
+                                                id,
+                                                sex,
+                                                photo,
+                                                name,
+                                                email,
+                                                setFriendId
+                                            }) => {
+
+    const callFriend = () => {
+        if (setFriendId) {
+            setFriendId(id)
+        } else {
+            return null
+        }
+    }
 
     return (
       <div className={style.contact}>
@@ -17,7 +26,7 @@ export const Contact: FC<PropsType> = memo(({
 
           <div className={style.contactInfo}>
               <div className={style.name}>
-                  <NavLink to={`/dialogs/${id}`} >
+                  <NavLink to={`/dialogs/${id}`} onClick={callFriend}>
                       {name}
                   </NavLink>
               </div>
@@ -35,4 +44,5 @@ type PropsType = {
     photo: string
     name: string
     email: string
+    setFriendId?: (friendId: string) => void
 }

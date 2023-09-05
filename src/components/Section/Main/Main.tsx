@@ -35,7 +35,7 @@ export const Main: FC<PropsType> = memo(({
               <Route path='*' element={<Error/>}/>
               <Route path='/' element={<Profile/>}/>
               <Route path="profile/*" element={<Profile/>}/>
-              <Route path='dialogs' element={<DialogsPage/>}/>
+              <Route path='dialogs/*' element={<DialogsPage/>}/>
               <Route path='friends/*' element={<FriendsPage/>}/>
               <Route path='groups' element={<GroupsPage/>}/>
               <Route path="photos"

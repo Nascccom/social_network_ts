@@ -7,5 +7,5 @@ export const useStatePageSize = () => {
     )
     const [showContacts, setShowContacts] = useState(window.innerWidth <= 630);
 
-    return {section, setSection, showContacts}
+    return {section, setSection, showContacts, setShowContacts}
 }
