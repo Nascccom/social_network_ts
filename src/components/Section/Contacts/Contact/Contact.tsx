@@ -9,14 +9,7 @@ export const Contact: FC<PropsType> = memo(({
                                            photo,
                                            name,
                                            email,
-                                           setFriendId
                                        }) => {
-
-    const onClickContactHandler = () => {
-        if (setFriendId) {
-            setFriendId(id)
-        }
-    }
 
     return (
       <div className={style.contact}>
@@ -24,7 +17,7 @@ export const Contact: FC<PropsType> = memo(({
 
           <div className={style.contactInfo}>
               <div className={style.name}>
-                  <NavLink to={`/dialogs/${id}`} onClick={onClickContactHandler}>
+                  <NavLink to={`/dialogs/${id}`} >
                       {name}
                   </NavLink>
               </div>
@@ -42,5 +35,4 @@ type PropsType = {
     photo: string
     name: string
     email: string
-    setFriendId?: (friendId: string) => void
 }

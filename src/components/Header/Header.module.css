@@ -1,8 +1,8 @@
 .header {
-    background: #fff url('../../img/timeline01.jpg') no-repeat;
-    background-size: cover;
     grid-area: header;
-    height: 400px;
+    background: url('../../img/timeline01.jpg') no-repeat;
+    background-size: cover;
+    height: 300px;
     margin-bottom: 30px;
 }
 
@@ -12,6 +12,7 @@
     height: 100%;
     margin: 0 auto;
     max-width: 1200px;
+    padding: 0 15px;
 }
 
 .headerInner {

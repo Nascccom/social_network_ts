@@ -1,7 +1,8 @@
 .profileInfo {
     display: flex;
-    justify-content: space-around;
-    background-color: #eee1e1;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: var(--color-backgroundCard);
     margin-bottom: 20px;
     padding: 20px;
 }
@@ -20,4 +21,14 @@
 
 hr {
     border: 1px groove #918e8e;
+}
+
+@media (max-width: 1080px) {
+    .profileInfo {
+        flex-direction: column;
+    }
+
+    .photoAndStatusBlock {
+        margin-bottom: 20px;
+    }
 }

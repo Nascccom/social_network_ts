@@ -4,12 +4,8 @@
     box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3,
+h4, h5, h6 {
     margin: 0;
 }
 
@@ -44,4 +40,12 @@ li:last-child {
 
 a {
     text-decoration: none;
+}
+
+:root {
+    --color-logoutPage: rgba(170, 163, 236, 0.83);
+    --color-backgroundCard: #eee1e1;
+    --color-violet: #6e08cd;
+    --color-button: #af75e7;
+    --color--button-hover: #C1B1D0FF
 }

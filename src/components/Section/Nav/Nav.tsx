@@ -15,7 +15,7 @@ import {SectionCSSType} from "../../../App.tsx";
 import {useAppDispatch} from "../../../hooks/useAppDispatch.ts";
 import {logoutTC} from "../../../redux/reducers/authReducer.ts";
 
-export const Nav: FC<PropsType> = memo(({section, changePageLayout}) => {
+export const Nav: FC<PropsType> = memo(({section, changePageLayout, showContacts}) => {
     const dispatch = useAppDispatch()
 
     if (section === "sectionLogout" || section === "sectionError") {
@@ -33,8 +33,18 @@ export const Nav: FC<PropsType> = memo(({section, changePageLayout}) => {
           <div className={style.link}>
               <FontAwesomeIcon icon={faCircleUser} size="lg" pull="left"/>
               <NavLink to="profile"
-                       onClick={() => changePageLayout("sectionAll")}>My Page</NavLink>
+                       onClick={() => changePageLayout("sectionAll")}>Home</NavLink>
           </div>
+
+          {showContacts && (
+            <div className={style.link}>
+                <FontAwesomeIcon icon={faImage} size="lg" pull="left" />
+                <NavLink to="contacts" onClick={() => changePageLayout("sectionDialogs")}>
+                    Contacts
+                </NavLink>
+            </div>
+          )}
+
           <div className={style.link}>
               <FontAwesomeIcon icon={faEnvelope} size="lg" pull="left"/>
               <NavLink to="dialogs"
@@ -55,6 +65,7 @@ export const Nav: FC<PropsType> = memo(({section, changePageLayout}) => {
               <NavLink to="photos"
                        onClick={() => changePageLayout("sectionAll")}>Photos</NavLink>
           </div>
+
           <div className={style.link}>
               <FontAwesomeIcon
                 icon={faRightFromBracket} size="lg" pull="left"/>
@@ -68,4 +79,5 @@ export const Nav: FC<PropsType> = memo(({section, changePageLayout}) => {
 type PropsType = {
     section: SectionCSSType
     changePageLayout: (value: SectionCSSType) => void
+    showContacts: boolean
 }

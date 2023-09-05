@@ -8,7 +8,6 @@
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-
 }
 
 .sectionDialogs {
@@ -24,10 +23,26 @@
 }
 
 .sectionLogout {
-    background-color: rgba(170, 163, 236, 0.83);
+    background-color: var(--color-logoutPage)
 }
 
-
 .sectionError {
-    background-color: rgba(170, 163, 236, 0.83);
+    background-color: var(--color-logoutPage);
+}
+
+@media (max-width: 850px) {
+    .sectionAll {
+        grid-template-columns: 0.3fr 2fr 1.7fr;
+    }
+
+    .sectionDialogs {
+        grid-template-columns: 0.3fr 3.7fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .sectionAll {
+        grid-template-areas: "nav main";
+        grid-template-columns: 0.3fr 2fr;
+    }
 }

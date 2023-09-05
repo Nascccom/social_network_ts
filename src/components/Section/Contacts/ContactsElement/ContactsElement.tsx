@@ -5,7 +5,6 @@ import {FC, memo} from "react";
 
 export const ContactsElement: FC<PropsType> = memo(({
                                                    contactsArray,
-                                                   setFriendId
                                                }) => {
 
     const mappedFriends = contactsArray.map(f => (
@@ -15,7 +14,6 @@ export const ContactsElement: FC<PropsType> = memo(({
                photo={f.photo}
                name={f.name}
                email={f.email}
-               setFriendId={setFriendId}
       />))
 
     return (
@@ -27,6 +25,5 @@ export const ContactsElement: FC<PropsType> = memo(({
 
 type PropsType = {
     contactsArray: FriendType[]
-    setFriendId?: (friendId: string) => void
 }
 

@@ -1,4 +1,4 @@
-import {ChangeEvent, KeyboardEvent, memo, useEffect, useState} from "react";
+import {ChangeEvent, KeyboardEvent, memo, useCallback, useEffect, useState} from "react";
 import style from "./ProfileStatus.module.css"
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
@@ -20,12 +20,12 @@ export const ProfileStatus = memo(() => {
         id = authId
     }
 
-
     useEffect(() => {
         dispatch(getStatusTC(id))
     }, [dispatch, id])
 
-    const updateStatus = (): void => {
+    const updateStatus = useCallback((): void => {
+        console.log('updateStatus')
         if (!status) {
             dispatch(updateStatusTC("..."))
             setEditMode(!editMode)
@@ -33,7 +33,7 @@ export const ProfileStatus = memo(() => {
             dispatch(updateStatusTC(status))
             setEditMode(!editMode)
         }
-    }
+    }, [dispatch, editMode, status])
 
     const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
@@ -56,7 +56,6 @@ export const ProfileStatus = memo(() => {
         updateStatus()
     }
 
-    console.log(profileStatus, status, id)
     return (
       <div className={style.profileStatus}>
           {

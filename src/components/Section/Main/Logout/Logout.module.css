@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     height: 100vh;
     padding: 30px;
-    background-color: rgba(170, 163, 236, 0.83);
+    background-color: var(--color-logoutPage);
 }
 
 .leftPart {
@@ -28,5 +28,11 @@
 
 .welcomeText {
     margin-bottom: 40px;
+}
+
+@media (max-width: 800px) {
+    .leftPart {
+        display: none
+    }
 }
 
