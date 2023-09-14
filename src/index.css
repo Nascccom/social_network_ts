@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+}
+
 h1, h2, h3,
 h4, h5, h6 {
     margin: 0;
@@ -43,9 +47,17 @@ a {
 }
 
 :root {
-    --color-logoutPage: rgba(170, 163, 236, 0.83);
+              /*BUTTON STYLES*/
+    --color-buttonBackground: #af75e7;
+    --color-button-hover: #07a3e3;
+    --color-darkText: #555;
+    --button-lightText: #eee1e1;
+    --color-violet: #9942f3;
+    --btn-disabled: #888888;
+    --btn-showMore: #b8bcc2;
+
+
+
+    --color-logoutPage: #AAA3ECD3;
     --color-backgroundCard: #eee1e1;
-    --color-violet: #6e08cd;
-    --color-button: #af75e7;
-    --color--button-hover: #C1B1D0FF
 }

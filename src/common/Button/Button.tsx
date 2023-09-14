@@ -1,16 +1,16 @@
 import style from "./Button.module.css"
-import {FC, memo} from "react";
+import {FC, memo, ReactNode} from "react";
 
 export const Button: FC<PropsType> = memo(({
-                                          name,
-                                          callBack,
-                                          styles,
-                                          disabled,
-                                          status
-                                      }) => {
+                                               name,
+                                               callBack,
+                                               styles,
+                                               disabled,
+                                               status
+                                           }) => {
     const styleBtn = status
-      ? `${style.btn} ${style.blue} ${styles}`
-      : `${style.btn} ${style.violet} ${styles}`
+      ? `${style.btn} ${style.follow} ${styles}`
+      : `${style.btn} ${style.unfollow} ${styles}`
 
 
     return (
@@ -23,10 +23,25 @@ export const Button: FC<PropsType> = memo(({
 });
 
 type PropsType = {
-    name: string
+    /**
+     * It' describe button's label
+     **/
+    name: ReactNode
+    /**
+     * Button's action
+     **/
     callBack: () => void
+    /**
+     * Button's action
+     **/
     status?: boolean
+    /**
+     * Additional styles
+     **/
     styles?: string
+    /**
+     * Indicates whether the button is disabled or not
+     **/
     disabled?: boolean
 }
 

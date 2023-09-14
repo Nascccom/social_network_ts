@@ -1,18 +1,30 @@
 .btn {
-    font-weight: bold;
+    height: 30px;
+    min-width: 5rem;
+    color: var(--color-darkText);
     border: none;
     border-radius: 3px;
-    color: rgba(248, 248, 248, 0.83);
-    cursor: pointer;
     margin: 10px;
     padding: 5px 10px;
-    transition: opacity .2s linear;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background-color .4s linear;
 }
 
-.violet {
-    background-color: #6e08cd;
+.follow {
+    background-color: var(--color-violet);
+    color: var(--button-lightText);
 }
 
-.blue {
-    background-color: #b8bcc2;
+.unfollow {
+    background-color: var(--color-buttonBackground);
+}
+
+.btn:hover {
+    background-color: var(--color-button-hover)
+}
+
+.btn:disabled {
+    background-color: var(--btn-disabled)
 }

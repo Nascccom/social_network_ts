@@ -4,6 +4,7 @@ import {loginTC} from "../../../../../redux/reducers/authReducer.ts";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {memo} from "react";
+import {Button} from "../../../../../common/Button/Button.tsx";
 
 
 export const LoginForm = memo(() => {
@@ -61,10 +62,11 @@ export const LoginForm = memo(() => {
                 ? (<div className={style.inputError}>{errorMessage}</div>)
                 : (<div className={style.inputError}></div>)}
 
-              <button type='submit'
-                      className={style.btn}>
-                  LOGIN
-              </button>
+              <Button name={'LOGIN'} callBack={() => {}} styles={style.btn}/>
+              {/*<button type='submit'*/}
+              {/*        className={style.btn}>*/}
+              {/*    LOGIN*/}
+              {/*</button>*/}
 
           </div>
       </form>

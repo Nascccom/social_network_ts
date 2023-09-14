@@ -1,6 +1,7 @@
 import {FC, memo} from "react";
 import style from "./AddPostForm.module.css";
 import {SubmitHandler, useForm} from "react-hook-form";
+import {Button} from "../../../../../../common/Button/Button.tsx";
 
 export const AddPostForm: FC<PropsType> = memo(({addPost}) => {
 
@@ -21,7 +22,8 @@ export const AddPostForm: FC<PropsType> = memo(({addPost}) => {
           <textarea {...register('newPost', {required: true})}
                     placeholder={'I wait...'}>
           </textarea>
-          <button>Publish</button>
+
+          <Button name={'Publish'} callBack={() => {}}/>
       </form>
     );
 });

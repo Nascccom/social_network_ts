@@ -1,5 +1,6 @@
 import {FC, memo} from "react";
 import style from "./ShowMore.module.css"
+import {Button} from "../Button/Button.tsx";
 
 export const ShowMore: FC<PropsType> = memo(({onLoadMore}) => {
 
@@ -9,9 +10,7 @@ export const ShowMore: FC<PropsType> = memo(({onLoadMore}) => {
 
     return (
       <div className={style.showMore}>
-          <div className={style.btn} onClick={onClickHandler}>
-              Show more
-          </div>
+          <Button name={'Show more'} callBack={onClickHandler} styles={style.btn}/>
       </div>
     );
 });

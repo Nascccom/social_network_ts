@@ -1,5 +1,5 @@
 .loginForm {
-    background-color: #ffffff;
+    background-color: var(--color-backgroundCard);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,6 +16,7 @@
 }
 
 .formInput {
+    background-color:  var(--color-backgroundCard);
     display: block;
     height: 40px;
     width: 100%;
@@ -47,20 +48,9 @@
 }
 
 .btn {
-    display: block;
+    height: 100%;
     width: 100%;
-    border: none;
-    border-radius: 5px;
-    color: #000;
     padding: 15px 30px;
     font-size: 16px;
-    font-weight: 700;
-    background-color: #af75e7;
-    transition: background-color .2s linear;
-    margin-bottom: 15px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #07a3e3;
+    margin: 0;
 }

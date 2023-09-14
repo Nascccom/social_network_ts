@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShare} from "@fortawesome/free-solid-svg-icons/faShare";
 import {FC, memo} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
+import {Button} from "../../../../../../common/Button/Button.tsx";
 
 
 export const AddMessageForm: FC<PropsType> = memo(({addMessage}) => {
@@ -22,11 +23,11 @@ export const AddMessageForm: FC<PropsType> = memo(({addMessage}) => {
       <form className={style.addMessageForm} onSubmit={handleSubmit(onSubmit)}>
           <input type="text"
                  placeholder={'Write your message...'}
-                 {...register('newMessage', {required: true})}
-          />
-          <button>
-              <FontAwesomeIcon icon={faShare} size="lg" style={{color: "#fff"}}/>
-          </button>
+                 {...register('newMessage', {required: true})}/>
+
+          <Button name={<FontAwesomeIcon icon={faShare} size="lg" style={{color: "#fff"}}/>}
+                  callBack={ () => {} }
+                  styles={style.roundedButton}/>
       </form>
     );
 });

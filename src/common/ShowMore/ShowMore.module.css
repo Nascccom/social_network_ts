@@ -1,4 +1,3 @@
-
 .showMore {
     display: flex;
     justify-content: center;
@@ -9,21 +8,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    border: none;
+    padding: 1.5rem 1rem;
     border-radius: 50px;
-    background-color: #b8bcc2;
-    color: #000;
+    background-color: var(--btn-showMore);
     font-size: 1rem;
-    font-weight: bold;
     text-transform: uppercase;
-    cursor: pointer;
     overflow: hidden;
-}
-
-.btn:hover {
-    background-color: #6e08cd;
 }
 
 .btn span {
@@ -37,7 +27,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #FFFFFF19;
     transform-origin: center center;
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.5s ease-out;
