@@ -53,7 +53,6 @@ export const WithIcon: Story = {
     },
 }
 
-
 export const ShowMore: Story = {
     args: {
         ...Default.args,
@@ -67,20 +66,3 @@ export const Login: Story = {
         styles: loginFormStyle.btn
     }
 }
-
-
-//
-// export const Small: Story = {
-//     args: {
-//         size: 'small',
-//         label: 'Button',
-//     },
-// };
-//
-// export const Warning: Story = {
-//     args: {
-//         primary: true,
-//         label: 'Delete now',
-//         backgroundColor: 'red',
-//     }
-// };

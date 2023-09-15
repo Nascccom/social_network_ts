@@ -9,6 +9,12 @@ export const TitleWithUnderLine: FC<PropsType> = memo(({title, styles}) => {
 });
 
 type PropsType = {
+    /**
+     * It's page's title
+     **/
     title: string
+    /**
+     * Additional styles
+     **/
     styles?: string;
 }
