@@ -2,10 +2,12 @@ import style from "./ContactsElement.module.css";
 import {Contact} from "../Contact/Contact.tsx";
 import {FriendType} from "../../../../redux/reducers/usersReducer.ts";
 import {FC, memo} from "react";
+import {SectionCSSType} from "../../../../App.tsx";
 
 export const ContactsElement: FC<PropsType> = memo(({
                                                         contactsArray,
-                                                        setFriendId
+                                                        setFriendId,
+                                                        changePageLayout,
                                                     }) => {
 
     const mappedFriends = contactsArray.map(f => (
@@ -16,6 +18,8 @@ export const ContactsElement: FC<PropsType> = memo(({
                name={f.name}
                email={f.email}
                setFriendId={setFriendId}
+               changePageLayout={changePageLayout}
+
       />))
 
     return (
@@ -28,5 +32,6 @@ export const ContactsElement: FC<PropsType> = memo(({
 type PropsType = {
     contactsArray: FriendType[]
     setFriendId?: (friendId: string) => void
+    changePageLayout?: (value: SectionCSSType) => void
 }
 

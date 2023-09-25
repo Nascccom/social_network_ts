@@ -34,7 +34,7 @@ export const App = memo(() => {
           <div className={section}>
               <Nav section={section} changePageLayout={changePageLayout} showContacts={showContacts}/>
               <Main section={section} changePageLayout={changePageLayout}/>
-              {section === "sectionAll" && window.innerWidth > 630 && <Contacts/>}
+              {section === "sectionAll" && window.innerWidth > 630 && <Contacts changePageLayout={changePageLayout} />}
           </div>
           <Footer section={section}/>
           {section === "sectionLogout" && <Logout changePageLayout={changePageLayout}/>}

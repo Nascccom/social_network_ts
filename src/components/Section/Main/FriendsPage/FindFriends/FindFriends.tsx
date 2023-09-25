@@ -53,7 +53,7 @@ export const FindFriends = memo(() => {
 
 
     return isFetching
-      ? <Preloader/>
+      ? <Preloader />
       : <div className={style.findFriends}>
           {mappedUsers}
           <ShowMore onLoadMore={loadMoreUsers}/>

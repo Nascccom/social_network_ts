@@ -2,6 +2,7 @@ import style from "./Contact.module.css";
 import {FC, memo} from "react";
 import {NavLink} from "react-router-dom";
 import {UserAvatar} from "../../../../common/UserAvatar/UserAvatar.tsx";
+import {SectionCSSType} from "../../../../App.tsx";
 
 export const Contact: FC<PropsType> = memo(({
                                                 id,
@@ -9,14 +10,16 @@ export const Contact: FC<PropsType> = memo(({
                                                 photo,
                                                 name,
                                                 email,
-                                                setFriendId
+                                                setFriendId,
+                                                changePageLayout,
                                             }) => {
 
-    const callFriend = () => {
+    const callFriendHandler = () => {
+        if (changePageLayout) {
+            changePageLayout("sectionDialogs")
+        }
         if (setFriendId) {
             setFriendId(id)
-        } else {
-            return null
         }
     }
 
@@ -25,14 +28,13 @@ export const Contact: FC<PropsType> = memo(({
           <UserAvatar photo={photo} sex={sex} alt={name} styles={style.avatar}/>
 
           <div className={style.contactInfo}>
-              <div className={style.name}>
-                  <NavLink to={`/dialogs/${id}`} onClick={callFriend}>
-                      {name}
-                  </NavLink>
-              </div>
-              <div className={style.email}>
-                  {email}
-              </div>
+
+              <NavLink to={`/dialogs`}
+                       onClick={callFriendHandler}
+                       className={style.name}>
+                  {name}
+              </NavLink>
+              <div className={style.email}>{email}</div>
           </div>
       </div>
     );
@@ -45,4 +47,5 @@ type PropsType = {
     name: string
     email: string
     setFriendId?: (friendId: string) => void
+    changePageLayout?: (value: SectionCSSType) => void
 }

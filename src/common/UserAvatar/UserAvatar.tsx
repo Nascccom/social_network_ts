@@ -2,6 +2,7 @@ import style from "./UserAvatar.module.css";
 import maleFriend from "../../img/photoFriend/maleFriend.png";
 import femaleFriend from "../../img/photoFriend/femaleFriend.png";
 import {FC, memo} from "react";
+import {SexType} from "../../redux/reducers/usersReducer.ts";
 
 export const UserAvatar: FC<PropsType> = memo(({
                                               photo,
@@ -28,8 +29,21 @@ export const UserAvatar: FC<PropsType> = memo(({
 });
 
 type PropsType = {
+    /**
+     * It's photo's src
+     **/
     photo: string
-    sex?: string
+    /**
+     * If there is no photo from the server, then the avatar is selected;
+     * if the gender is male, then the avatar is male; if it is female, then the avatar is female.
+     **/
+    sex?: SexType
+    /**
+     * Description of the photo if there are problems with the path
+     **/
     alt: string
+    /**
+     * Additional styles
+     **/
     styles?: string
 }

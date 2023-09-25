@@ -1,0 +1,14 @@
+input {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    height: 30px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 2px solid var(--color-violet);
+}
+
+input:focus {
+    border-color: var(--color-button-hover);
+    outline: none;
+}

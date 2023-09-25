@@ -39,7 +39,8 @@ export const Nav: FC<PropsType> = memo(({section, changePageLayout, showContacts
           {showContacts && (
             <div className={style.link}>
                 <FontAwesomeIcon icon={faImage} size="lg" pull="left" />
-                <NavLink to="contacts" onClick={() => changePageLayout("sectionDialogs")}>
+                <NavLink to="contacts"
+                         onClick={() => changePageLayout("sectionDialogs")}>
                     Contacts
                 </NavLink>
             </div>

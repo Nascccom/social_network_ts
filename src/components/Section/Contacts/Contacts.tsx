@@ -2,17 +2,19 @@ import style from "./Contacts.module.css"
 import {TitleWithUnderLine} from "../../../common/TitleWithUnderLine/TitleWithUnderLine.tsx";
 import {useAppSelector} from "../../../hooks/useAppSelector.ts";
 import {FriendType} from "../../../redux/reducers/usersReducer.ts";
-import {ChangeEvent, useState} from "react";
+import {FC, memo, useState} from "react";
 import {ContactsElement} from "./ContactsElement/ContactsElement.tsx";
+import {SectionCSSType} from "../../../App.tsx";
+import {Input} from "../../../common/Input/Input.tsx";
 
 
-export const Contacts = () => {
+export const Contacts: FC<PropsType> = memo(({changePageLayout}) => {
     const friendContacts = useAppSelector<FriendType[]>(state => state.usersData.users)
 
     const [filterValue, setFilterValue] = useState('')
 
-    const onChangeFilterHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setFilterValue(e.currentTarget.value)
+    const onChangeFilterHandler = (necessaryText: string) => {
+        setFilterValue(necessaryText)
     }
     const filteredFriends = friendContacts.filter(f => f.followed &&
       f.name.toLowerCase().includes(filterValue))
@@ -22,14 +24,19 @@ export const Contacts = () => {
           <TitleWithUnderLine title={'Contacts'} styles={style.title}/>
 
           <div>
-              <input className={style.search}
-                     type="search"
+              <Input type={"search"}
                      placeholder={"Search contact..."}
-                     onChange={onChangeFilterHandler}/>
+                     onChangeCallback={onChangeFilterHandler}
+                     styles={style.search}/>
           </div>
 
-          <ContactsElement contactsArray={filteredFriends}/>
+          <ContactsElement contactsArray={filteredFriends}
+                           changePageLayout={changePageLayout}/>
       </div>
     );
-};
+})
 
+type PropsType = {
+    changePageLayout: (value: SectionCSSType) => void
+
+}

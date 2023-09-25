@@ -1,22 +1,11 @@
 .contacts {
     grid-area: contacts;
-    background-color: #eee1e1;
+    background-color: var(--button-lightText);
     font-weight: 500;
     padding: 20px;
     font-size: 15px;
 }
 
 .title {
-    margin: 0 0 30px 0;
+    margin-bottom: 30px
 }
-
-.search {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 400;
-    height: 30px;
-    margin-bottom: 20px;
-    width: 100%;
-    border: 2px solid #6e08cd;
-}
-

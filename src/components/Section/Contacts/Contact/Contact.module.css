@@ -20,9 +20,6 @@
 .name {
     font-size: 13px;
     font-weight: 500;
-}
-
-.name a {
     color: inherit;
     text-decoration: none;
 }
