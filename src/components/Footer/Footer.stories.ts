@@ -15,7 +15,25 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-       section: "sectionAll"
+        section: "sectionAll"
     },
+}
+
+export const FooterOnTablet: Story = {
+    args: {...Default.args},
+    parameters: {
+        viewport: {
+            defaultViewport: 'tablet'
+        }
+    }
+}
+
+export const FooterOnMobile: Story = {
+    args: {...Default.args},
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1'
+        }
+    }
 }
 
