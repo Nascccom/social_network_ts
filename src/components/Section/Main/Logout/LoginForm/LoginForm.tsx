@@ -3,8 +3,9 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {loginTC} from "../../../../../redux/reducers/authReducer.ts";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
-import {memo} from "react";
+import {memo, useEffect, useRef} from "react";
 import {Button} from "../../../../../common/Button/Button.tsx";
+import {Checkbox} from "../../../../../common/Checkbox/Checkbox.tsx";
 
 
 export const LoginForm = memo(() => {
@@ -22,9 +23,13 @@ export const LoginForm = memo(() => {
             rememberMe: false
         }
     })
+    const refCheckbox = useRef<HTMLInputElement>(null!);
+    useEffect(() => {
+        refCheckbox.current.focus();
+    }, []);
 
     const onSubmit: SubmitHandler<IFormInputs> = (data) => {
-        dispatch(loginTC(data.email, data.password, data.rememberMe))
+        dispatch(loginTC(data.email, data.password, refCheckbox.current.checked))
     };
 
 
@@ -51,23 +56,15 @@ export const LoginForm = memo(() => {
                 ? (<div className={style.inputError}>{errors.password.message}</div>)
                 : (<div className={style.inputError}></div>)}
 
-              <label className={style.rememberMe}>
-                  <input type="checkbox"
-                         className={style.checkbox}
-                         {...register("rememberMe")} />
-                  Remember Me
-              </label>
+              <Checkbox {...register("rememberMe")} ref={refCheckbox}/>
+              <span>Remember Me</span>
 
               {errorMessage
                 ? (<div className={style.inputError}>{errorMessage}</div>)
                 : (<div className={style.inputError}></div>)}
 
-              <Button name={'LOGIN'} callBack={() => {}} styles={style.btn}/>
-              {/*<button type='submit'*/}
-              {/*        className={style.btn}>*/}
-              {/*    LOGIN*/}
-              {/*</button>*/}
-
+              <Button name={'LOGIN'} callBack={() => {
+              }} styles={style.btn}/>
           </div>
       </form>
     );
@@ -78,4 +75,6 @@ interface IFormInputs {
     password: string
     rememberMe: boolean
 }
+
+
 

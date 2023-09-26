@@ -38,5 +38,4 @@ export const Contacts: FC<PropsType> = memo(({changePageLayout}) => {
 
 type PropsType = {
     changePageLayout: (value: SectionCSSType) => void
-
 }

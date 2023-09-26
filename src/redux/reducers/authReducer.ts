@@ -8,6 +8,7 @@ const initialState = {
     isAuth: false,
     rememberMe: false,
     errorMessageSubmit: '',
+    isLoading: 'loading' as LoadingProcessType
 }
 
 export const authReducer = (
@@ -24,6 +25,11 @@ export const authReducer = (
             return {
                 ...state,
                 errorMessageSubmit: action.errorMessageSubmit
+            }
+        case AUTH.CHANGE_LOADING_PROCESS:
+            return {
+                ...state,
+                isLoading: action.loadingValue
             }
         default:
             return state
@@ -47,35 +53,54 @@ export const stopSubmitAC = (errorMessageSubmit: string) => ({
     errorMessageSubmit
 }) as const
 
+export const changeLoadingProcess = (loadingValue: LoadingProcessType) => ({
+    type: AUTH.CHANGE_LOADING_PROCESS,
+    loadingValue
+}) as const
+
 
 //THUNK CREATORS
 export const getAuthMeTC = (): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
+        dispatch(changeLoadingProcess('loading'))
         const response = await authAPI.getAuthMe()
-        if (response.resultCode === RESULT_CODES.SUCCESS) {
-            const {id, email, login} = response.data
-            dispatch(setAuthDataAC(id, email, login, true))
+
+        try {
+            if (response.resultCode === RESULT_CODES.SUCCESS) {
+                const {id, email, login} = response.data
+                dispatch(setAuthDataAC(id, email, login, true))
+            }
+        } catch (e) {
+            dispatch(stopSubmitAC('error'))
+        } finally {
+            dispatch(changeLoadingProcess('success'))
         }
+
     }
 }
 
 export const logoutTC = (): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
+        dispatch(changeLoadingProcess('loading'))
         const response = await authAPI.logoutAuth()
         if (response.resultCode === RESULT_CODES.SUCCESS) {
             dispatch(setAuthDataAC(0, '', '', false))
+            dispatch(changeLoadingProcess('success'))
         }
     }
 }
 
 export const loginTC = (email: string, password: string, rememberMe: boolean): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
+        dispatch(changeLoadingProcess('loading'))
         const response = await authAPI.loginAuth(email, password, rememberMe)
         if (response.resultCode === RESULT_CODES.SUCCESS) {
             dispatch(getAuthMeTC())
             dispatch(stopSubmitAC(''))
+            dispatch(changeLoadingProcess('success'))
         } else {
             dispatch(stopSubmitAC(response.messages[0]))
+            dispatch(changeLoadingProcess('error'))
         }
     }
 }
@@ -85,5 +110,8 @@ export const loginTC = (email: string, password: string, rememberMe: boolean): T
 export type AuthActionTypes =
   | ReturnType<typeof setAuthDataAC>
   | ReturnType<typeof stopSubmitAC>
+  | ReturnType<typeof changeLoadingProcess>
 
 export type InitialAuthStateType = typeof initialState
+
+export type LoadingProcessType = 'loading' | 'success' | 'error' | 'idle'

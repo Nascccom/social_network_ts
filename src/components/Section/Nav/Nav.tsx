@@ -80,5 +80,5 @@ export const Nav: FC<PropsType> = memo(({section, changePageLayout, showContacts
 type PropsType = {
     section: SectionCSSType
     changePageLayout: (value: SectionCSSType) => void
-    showContacts: boolean
+    showContacts?: boolean
 }

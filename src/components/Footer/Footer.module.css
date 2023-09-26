@@ -1,5 +1,8 @@
 .footer:before {
-    background: radial-gradient(circle, var(--color-violet) 0%, var(--color-button) 45%, var(--color--button-hover) 100%);
+    background: radial-gradient(circle,
+    var(--color-violet) 0%,
+    var(--color-buttonBackground) 45%,
+    var(--color-button-hover) 100%);
     content: "";
     display: block;
     height: 4px;
@@ -15,7 +18,8 @@
     max-width: 1200px;
     padding: 0 15px;
     width: 100%;
-    gap: 17px
+    gap: 17px;
+
 }
 
 
@@ -23,14 +27,14 @@
 
 .footerColumnButton li {
     border-radius: 5px;
-    background-color: var(--color-button);
+    background-color: var(--color-buttonBackground);
     text-align: center;
     padding: 5px 20px;
     transition: background-color .3s ease;
 }
 
 .footerColumnButton li:hover {
-    background-color: var(--color--button-hover);
+    background-color: var(--color-button-hover);
 }
 
 .footerColumnButton a {
@@ -50,7 +54,7 @@
 }
 
 @media (max-width: 700px) {
-    .info .column:nth-of-type(4) {
+    .info .column:nth-of-type(2n) {
         display: none;
     }
 }
