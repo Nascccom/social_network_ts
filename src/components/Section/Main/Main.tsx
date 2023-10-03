@@ -10,6 +10,7 @@ import {FriendsPage} from "./FriendsPage/FriendsPage.tsx";
 import {GroupsPage} from "./Groups/GroupesPage.tsx";
 import {Error} from "../../Error.tsx";
 import {Preloader} from "../../../common/Preloader/Preloader.tsx";
+import {Contacts} from "../Contacts/Contacts.tsx";
 
 const PhotosPage = lazy(() => import("./PhotosPage/PhotosPage"))
 
@@ -44,6 +45,8 @@ export const Main: FC<PropsType> = memo(({
                          </Suspense>
                      }
               />
+              <Route path="contacts" element={<Contacts changePageLayout={changePageLayout}/>}/>
+
 
               <Route path='logout' element={<Logout changePageLayout={changePageLayout}/>}/>
           </Routes>
