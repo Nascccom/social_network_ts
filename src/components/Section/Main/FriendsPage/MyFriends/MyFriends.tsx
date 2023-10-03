@@ -1,4 +1,3 @@
-import style from './MyFriends.module.css'
 import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {followOrUnfollowUsersAC, FriendType} from "../../../../../redux/reducers/usersReducer.ts";
 import {FriendCard} from "../FriendCard/FriendCard.tsx";
@@ -36,7 +35,7 @@ export const MyFriends = memo((props: PropsType) => {
     })
 
     return (
-      <div className={style.myFriends}>
+      <div>
           {mappedFriends}
       </div>
     );

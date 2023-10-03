@@ -109,10 +109,41 @@ const storybookRootState: RootState = {
                 ]
             },
         ],
-        foundFriends: [],
+        foundFriends: [
+            {
+                id: '4',
+                sex: "female",
+                name: 'Katya',
+                photo: '',
+                followed: true,
+                status: 'Life',
+                email: 'tt44t_0a@bk.ru',
+                messages: []
+            },
+            {
+                id: '5',
+                sex: "male",
+                name: 'Ruslan',
+                photo: '',
+                followed: true,
+                status: 'Oops!',
+                email: 'ruslkkan@mail.ru',
+                messages: []
+            },
+            {
+                id: '6',
+                sex: "female",
+                name: 'Simaland',
+                photo: '',
+                followed: true,
+                status: '',
+                email: 'simaland@mail.ru',
+                messages: []
+            },
+        ],
         currentPage: 1,
         pageSize: 5,
-        totalCountUsers: 10,
+        totalCountUsers: 100,
         isFetching: false,
         isFollowingInProgress: [] as string[]
     },

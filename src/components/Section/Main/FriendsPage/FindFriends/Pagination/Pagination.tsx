@@ -4,10 +4,9 @@ import {setCurrentPageAC} from "../../../../../../redux/reducers/usersReducer.ts
 import {useAppDispatch} from "../../../../../../hooks/useAppDispatch.ts";
 
 export const Pagination: FC<PropsType> = memo(({
-                                                   currentPage,
+                                                   currentPage= 1,
                                                    totalCountUsers,
                                                    pageSize,
-
                                                }) => {
     const dispatch = useAppDispatch()
 

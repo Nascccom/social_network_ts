@@ -1,5 +1,4 @@
 import type {Meta, StoryObj} from '@storybook/react';
-
 import {DialogsPage} from "./DialogsPage.tsx";
 import {mockStore} from "../../../../redux/decoratorForStorybook/decoratorForStorybook.tsx";
 

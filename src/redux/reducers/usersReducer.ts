@@ -268,25 +268,29 @@ export const showMoreAC = () => ({type: USERS.SHOW_MORE}) as const
 //THUNK CREATORS
 export const getUsersTC = (currentPage: number, pageSize: number): ThunkActionType => {
     return async (dispatch: ThunkDispatchType) => {
-        dispatch(toggleIsFetchingAC(true))
-        const response = await usersAPI.getUsers(pageSize, currentPage)
+        try {
+            dispatch(toggleIsFetchingAC(true))
+            const response = await usersAPI.getUsers(pageSize, currentPage)
 
-        const users: FriendType[] = response.items.map(u => {
-            return {
-                id: u.id,
-                sex: "male",
-                name: u.name,
-                photo: !u.photos.small ? '' : u.photos.small,
-                followed: u.followed,
-                status: !u.status ? "No status" : u.status,
-                email: `${u.name.replace(' ', "_").toLowerCase()}@mail.ru`,
-                messages: []
-            }
-        })
+            const users: FriendType[] = response.items.map(u => {
+                return {
+                    id: u.id,
+                    sex: "male",
+                    name: u.name,
+                    photo: !u.photos.small ? '' : u.photos.small,
+                    followed: u.followed,
+                    status: !u.status ? "No status" : u.status,
+                    email: `${u.name.replace(' ', "_").toLowerCase()}@mail.ru`,
+                    messages: []
+                }
+            })
 
-        dispatch(setUsersAC(users))
-        dispatch(toggleIsFetchingAC(false))
-        dispatch(setTotalCountUsersAC(response.totalCount))
+            dispatch(setUsersAC(users))
+            dispatch(setTotalCountUsersAC(response.totalCount))
+        }
+        finally {
+            dispatch(toggleIsFetchingAC(false))
+        }
     }
 }
 
