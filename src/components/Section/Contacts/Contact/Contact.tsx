@@ -1,4 +1,4 @@
-import style from "./Contact.module.css";
+import styles from "./Contact.module.css";
 import {FC, memo} from "react";
 import {NavLink} from "react-router-dom";
 import {UserAvatar} from "../../../../common/UserAvatar/UserAvatar.tsx";
@@ -24,17 +24,17 @@ export const Contact: FC<PropsType> = memo(({
     }
 
     return (
-      <div className={style.contact}>
-          <UserAvatar photo={photo} sex={sex} alt={name} styles={style.avatar}/>
+      <div className={styles.contact}>
+          <UserAvatar photo={photo} sex={sex} alt={name} styles={styles.avatar}/>
 
-          <div className={style.contactInfo}>
+          <div className={styles.contactInfo}>
 
               <NavLink to={`/dialogs`}
                        onClick={callFriendHandler}
-                       className={style.name}>
+                       className={styles.name}>
                   {name}
               </NavLink>
-              <div className={style.email}>{email}</div>
+              <div className={styles.email}>{email}</div>
           </div>
       </div>
     );

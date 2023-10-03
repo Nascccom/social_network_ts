@@ -9,25 +9,13 @@ const meta = {
     component: Contact,
     tags: ['autodocs'],
     decorators: [
-
+        mockStore,
         (Story) => (
           <div className={styles.contact}>
               <Story/>
           </div>
         ),
-        mockStore,
     ],
-    // render: (args) => (
-    //   <div className={styles.contact}>
-    //       <div className={styles.avatar}>
-    //           <img src={args.photo} alt="Avatar"/>
-    //       </div>
-    //       <div className={styles.contactInfo}>
-    //           <div className={styles.name}>{args.name}</div>
-    //           <div className={styles.email}>{args.email}</div>
-    //       </div>
-    //   </div>
-    // )
 } satisfies Meta<typeof Contact>;
 
 

@@ -1,7 +1,6 @@
 .contacts {
     grid-area: contacts;
     background-color: var(--button-lightText);
-    font-weight: 500;
     padding: 20px;
     font-size: 15px;
 }
