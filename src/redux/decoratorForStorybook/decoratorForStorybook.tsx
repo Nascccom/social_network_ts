@@ -1,5 +1,4 @@
 import {RootState} from "../store.ts";
-import {v1} from "uuid";
 import {Provider} from "react-redux";
 import {ReactNode} from "react";
 import {HashRouter} from "react-router-dom";
@@ -70,7 +69,7 @@ const storybookRootState: RootState = {
     usersData: {
         users: [
             {
-                id: '2',
+                id: '1',
                 sex: "female",
                 name: 'Katya Salimova',
                 photo: '',
@@ -78,13 +77,13 @@ const storybookRootState: RootState = {
                 status: 'Life is cool',
                 email: 'ttt_0a@bk.ru',
                 messages: [
-                    {id: v1(), message: 'Hello! How are you?'},
-                    {id: v1(), message: 'I love you!'},
-                    {id: v1(), message: 'Yo'},
+                    {id: '1', message: 'Hello! How are you?'},
+                    {id: '2', message: 'I love you!'},
+                    {id: '3', message: 'Yo'},
                 ]
             },
             {
-                id: '3',
+                id: '2',
                 sex: "male",
                 name: 'Ruslan Smirnov',
                 photo: '',
@@ -92,8 +91,21 @@ const storybookRootState: RootState = {
                 status: 'Ooops!',
                 email: 'ruslan@mail.ru',
                 messages: [
-                    {id: v1(), message: 'Hello!'},
-                    {id: v1(), message: 'You are crazy!'},
+                    {id: '1', message: 'Hello!'},
+                    {id: '2', message: 'You are crazy!'},
+                ]
+            },
+            {
+                id: '3',
+                sex: "male",
+                name: 'Sima',
+                photo: '',
+                followed: true,
+                status: '',
+                email: 'sima@mail.ru',
+                messages: [
+                    {id: '1', message: 'No problem!'},
+                    {id: '2', message: 'You are crazy!'},
                 ]
             },
         ],

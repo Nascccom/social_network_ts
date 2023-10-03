@@ -7,6 +7,7 @@ export const Message: FC<PropsType> = memo(({text}) => {
     const profileUserAvatar = useAppSelector(
       state => state.profileData.profile?.photos.large)
 
+
     return (
       <div className={style.message}>
           <div className={style.avatar}>

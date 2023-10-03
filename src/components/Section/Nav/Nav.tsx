@@ -15,7 +15,11 @@ import {SectionCSSType} from "../../../App.tsx";
 import {useAppDispatch} from "../../../hooks/useAppDispatch.ts";
 import {logoutTC} from "../../../redux/reducers/authReducer.ts";
 
-export const Nav: FC<PropsType> = memo(({section, changePageLayout, showContacts}) => {
+export const Nav: FC<PropsType> = memo(({
+                                            section,
+                                            changePageLayout,
+                                            showContacts
+                                        }) => {
     const dispatch = useAppDispatch()
 
     if (section === "sectionLogout" || section === "sectionError") {
@@ -38,7 +42,7 @@ export const Nav: FC<PropsType> = memo(({section, changePageLayout, showContacts
 
           {showContacts && (
             <div className={style.link}>
-                <FontAwesomeIcon icon={faImage} size="lg" pull="left" />
+                <FontAwesomeIcon icon={faImage} size="lg" pull="left"/>
                 <NavLink to="contacts"
                          onClick={() => changePageLayout("sectionDialogs")}>
                     Contacts
