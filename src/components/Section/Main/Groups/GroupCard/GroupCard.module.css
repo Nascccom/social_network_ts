@@ -4,8 +4,8 @@ p {
 
 .groupCard {
     align-items: center;
-    border: 1px solid #6e08cd;
-    background-color: rgba(211, 210, 210, 0.83);
+    border: 1px solid var(--color-violet);
+    background-color: var(--color-friendCard);
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -16,7 +16,7 @@ p {
 }
 
 .groupCard:hover {
-    box-shadow: 5px 5px 5px #6e08cd;
+    box-shadow: 5px 5px 5px var(--color-buttonBackground);
 }
 
 .info {
@@ -33,7 +33,7 @@ p {
 }
 
 .info a:hover {
-    color: #7c24ef;
+    color:var(--color-violet);
     transition: color .3s linear;
 }
 

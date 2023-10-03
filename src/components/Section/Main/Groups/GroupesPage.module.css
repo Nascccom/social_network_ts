@@ -1,5 +1,5 @@
 .groupsPage {
-    background-color: #eee1e1;
+    background-color: var(--color-backgroundCard);
     padding: 20px;
 }
 
