@@ -161,8 +161,8 @@ export const usersReducer = (state: InitialUsersStateType = initialState, action
             }
         case USERS.SET_USERS:
             return {
-                ...state, foundFriends: [
-                    ...state.foundFriends,
+                ...state,
+                foundFriends: [
                     ...action.users
                 ]
             }
@@ -183,6 +183,7 @@ export const usersReducer = (state: InitialUsersStateType = initialState, action
         case USERS.SET_CURRENT_PAGE:
             return {
                 ...state,
+                pageSize: 10,
                 currentPage: action.currentPage
             }
         case USERS.SET_TOTAL_COUNT_USERS:
@@ -287,8 +288,7 @@ export const getUsersTC = (currentPage: number, pageSize: number): ThunkActionTy
 
             dispatch(setUsersAC(users))
             dispatch(setTotalCountUsersAC(response.totalCount))
-        }
-        finally {
+        } finally {
             dispatch(toggleIsFetchingAC(false))
         }
     }
