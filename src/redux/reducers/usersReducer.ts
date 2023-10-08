@@ -172,10 +172,11 @@ export const usersReducer = (state: InitialUsersStateType = initialState, action
                 users: state.users.map(f => f.id === action.userId
                   ? {
                       ...f,
-                      messages: [...f.messages, {
-                          id: v1(),
-                          message: action.newMessage
-                      }]
+                      messages: [
+                          ...f.messages, {
+                              id: v1(),
+                              message: action.newMessage
+                          }]
                   }
                   : f
                 )
@@ -244,7 +245,7 @@ export const addMessageAC = (userId: string, newMessage: string) => {
     }) as const
 }
 
-export const setCurrentPageAC = (currentPage: number) => ({type: USERS.SET_CURRENT_PAGE, currentPage}) as const
+export const setCurrentPageAC = (currentPage: number = 1) => ({type: USERS.SET_CURRENT_PAGE, currentPage}) as const
 
 export const setTotalCountUsersAC = (totalCountUsers: number) => ({
     type: USERS.SET_TOTAL_COUNT_USERS,

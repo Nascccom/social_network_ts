@@ -5,7 +5,8 @@ import {useAppSelector} from "../../../../../hooks/useAppSelector.ts";
 import {
     followingUserTC,
     FriendType,
-    getUsersTC, showMoreAC,
+    getUsersTC, setCurrentPageAC,
+    showMoreAC,
     unfollowingUserTC
 } from "../../../../../redux/reducers/usersReducer.ts";
 import {memo, useEffect} from "react";
@@ -26,6 +27,12 @@ export const FindFriends = memo(() => {
     useEffect(() => {
         dispatch(getUsersTC(currentPage, pageSize))
     }, [currentPage, dispatch, pageSize, totalCountUsers])
+
+    useEffect(() => {
+        return () => {
+            dispatch(setCurrentPageAC(1));
+        };
+    }, [dispatch]);
 
     const changeStatusFollow = (id: string, followed: boolean) => {
         if (followed) {
@@ -53,7 +60,7 @@ export const FindFriends = memo(() => {
 
 
     return isFetching
-      ? <Preloader />
+      ? <Preloader/>
       : <div className={style.findFriends}>
           {mappedUsers}
           <ShowMore onLoadMore={loadMoreUsers}/>
